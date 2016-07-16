@@ -1,5 +1,5 @@
 class StaticsController < ApplicationController
-  before_action :authenicate_user!, only: [ :secret]
+  before_action :authenticate_user!, only: [ :secret]
   def home
   end
 
