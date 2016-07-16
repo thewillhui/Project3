@@ -16,6 +16,7 @@
 //= require jquery-deparam/jquery-deparam
 //= require pubsub-js/src/pubsub
 //= require j-toker/dist/jquery.j-toker
+//= require jquery-ui
 //= require_tree .
 
 $.auth.configure({
