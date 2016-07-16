@@ -6,6 +6,7 @@ body {
 
 input {
   display: block;
+  margin-bottom: 20px;
 }
 
 h1 {
@@ -76,6 +77,33 @@ p {
   text-decoration: none;
 }
 
-.logo_spoon{
+.logo_spoon {
   color: #00ffcc;
 }
+
+.page-title, .sign-in-title {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.fb-login-btn {
+  width: 200px;
+  height: 43px;
+  background-image: url("/assets/fb_login.png");
+  display: block;
+}
+
+.fb-login-btn:hover {
+  background-image: url("/assets/fb_login_hover.png");
+}
+
+.login-btn, .signup-btn {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  min-width: 200px;
+  height: 43px;
+  background-color: #00ffcc;
+  border: none;
+  display: block;
+}
+
