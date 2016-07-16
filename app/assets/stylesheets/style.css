@@ -1,0 +1,34 @@
+
+body {
+  background-color: #222;
+}
+
+h2 {
+  font-family: 'Lora', serif;
+}
+
+p {
+  font-family: 'Hind', sans-serif;
+}
+
+.navbar-default {
+  background-color: #222;
+  border-color: #111;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: white;
+}
+
+.navbar {
+  border-radius: 0px;
+}
+#logo {
+font-family: 'Poiret One', cursive;
+color: white;
+font-size: 30px;
+}
+
+#logo_spoon{
+  color: #00ffcc;
+}
