@@ -1,15 +1,41 @@
 
 body {
-  background-color: #222;
+  background-color: #333;
   color: #d0d3d2;
+}
+
+input {
+  display: block;
+}
+
+h1 {
+  font-family: 'Lora', serif;
+  color: white;
 }
 
 h2 {
   font-family: 'Lora', serif;
+  color: white;
+}
+
+h3 {
+  font-family: 'Lora', serif;
+  color: white;
+}
+
+h4 {
+  font-family: 'Lora', serif;
+  color: white;
+}
+
+h5 {
+  font-family: 'Lora', serif;
+  color: white;
 }
 
 p {
   font-family: 'Hind', sans-serif;
+  color: white;
 }
 
 .navbar-default {
@@ -21,16 +47,36 @@ p {
   color: white;
 }
 
+.navbar-default .navbar-brand {
+  color: white;
+}
+
 .navbar {
   border-radius: 0px;
 }
-#logo {
-font-family: 'Poiret One', cursive;
-color: white;
-font-size: 30px;
+
+.navbar-header {
+    padding-left: 10px;
+    padding-right: 20px;
 }
 
-#logo_spoon{
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+  color: #00ffcc;
+}
+
+.logo {
+  font-family: 'Poiret One', cursive;
+  color: white;
+  font-size: 40px;
+  text-decoration: none;
+}
+
+.logo a, .navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.logo_spoon{
   color: #00ffcc;
 }
 

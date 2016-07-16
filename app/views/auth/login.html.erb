@@ -1,6 +1,27 @@
+<div class="sign-in-title">
+  <h1>Sign into <span class="logo_spoon logo">spoon</span><span class="logo">feed</h1></span>
+</div>
 <form id="login-form">
-  <input type="email" name="email">
-  <input type="password" name="password">
-  <input type="password" name="password_confirmation">
-  <button type="submit">Login</button>
+    <div class="form-group">
+      <div class="col-xs-4 col-xs-offset-4">
+        <input class="form-control"
+        name="email" placeholder="Email" type="email">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-xs-4 col-xs-offset-4">
+        <input class="form-control" name="password" placeholder="Password" type="password">
+      </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-4 col-xs-offset-4">
+            <button class="btn btn-default login-btn" type="submit">Log in</button>
+        </div>
+    </div>
+    <div class="form-group">
+      <div class="col-xs-4 col-xs-offset-4">
+        <div class="fb-login-button" data-auto-logout-link="false" data-max-rows="1" data-show-faces="false" data-size="xlarge"></div>
+        <div class="fb-login-btn"></div>
+      </div>
+    </div>
 </form>
