@@ -25,6 +25,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bower'
 gem 'devise_token_auth'
 gem 'omniauth'
+gem 'omniauth-facebook'
 gem 'nokogiri'
 
 gem 'rails_12factor', group: :production
