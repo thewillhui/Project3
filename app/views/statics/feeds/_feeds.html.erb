@@ -6,18 +6,18 @@ $.ajax({
   url: '/subscriptions',
   method: 'GET',
   success: function(feed){
-    // console.log(feed.entries.first.title);
+    console.log(feed.title);
+    console.log(feed.entries);
+    // console.log(feed.entries);
+
     feed.entries.forEach(function(entry){
-      console.log('title: ' + entry[0][1]);
+      console.log(entry);
       html = '<div class="entry-div col-sm-3">' +
                 '<div class="thumbnail">' +
                   '<div class="caption">' +
-                    '<h4>' + entry[0][1] + '</h4>' +
-                    '<p>' + entry[5][1] + '</p>' +
+                    '<h4>' + entry.title + '</h4>' +
+                    '<p>' + entry.published + '</p>' +
                   '</div></div></div>';
-      // html = '<div class="entry-div">' +
-      //       '<h4>'+ entry.title +'</h4>' +
-      //       '</div>';
       $('#feed').append(html);
     })
   }

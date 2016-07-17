@@ -1,8 +1,10 @@
 class StaticsController < ApplicationController
   before_action :authenticate_user!, only: [ :secret]
-  before_action :authenticate, only: [ :searchbox]
+
 
   def home
+    url = 'http://feeds.bbci.co.uk/news/rss.xml'
+    @feed = Feedjira::Feed.fetch_and_parse url
   end
 
   def secret
