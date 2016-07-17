@@ -11,9 +11,5 @@ class StaticsController < ApplicationController
   def searchbox
   end
 
-  protected
-  def authenticate
-    authenticate_or_request_with_http_token do |token, options|
-      User
-  end
+
 end
