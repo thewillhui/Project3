@@ -1,0 +1,27 @@
+<div >
+   <p>Type I OR A</p>
+   <input id="autocomplete-4">
+   <div id='result'></div>
+</div>
+
+<script>
+$(document).ready(function(){
+
+  $.ajax({
+    url: 'http://cloud.feedly.com/v3/search/feeds?query=%27hi%27',
+    method: 'GET',
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader ("Authorization", "AwZZFq0ZEY3kNzAebaaZDvVuUjNxcToKFGLMiwJG47El3F9e2gF2MR8Paq74uoOV6TC-YKSGgkiQ-vzpuQJTXRx5Z_AG-j_JCYCyr2T7vpfaZNhBMRnuw1aWbzJDJjdvbxNC3ubhfPeWA8rA2Gf85t7a4SXxPSf68nIlKV-uGXMnG14w1wiNJLuLje5Bq2UBsTXvqrAC75XevVnmmPDttDchxh38Mw:feedlydev");
+    },
+
+
+  })
+  $.getJSON('http://cloud.feedly.com/v3/search/feeds?query=%27hi%27', function(data){
+    console.log(data);
+  })
+  // var xml = $.parseXML('http://cloud.feedly.com/v3/search/feeds?query=%27hi%27'),
+  // $xml = $(xml),
+  // $test = $xml.find('title');
+  // console.log($test.text());
+})
+</script>
