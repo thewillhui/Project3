@@ -1,5 +1,7 @@
 class StaticsController < ApplicationController
   before_action :authenticate_user!, only: [ :secret]
+  before_action :authenticate, only: [ :searchbox]
+
   def home
   end
 
@@ -8,4 +10,6 @@ class StaticsController < ApplicationController
 
   def searchbox
   end
+
+
 end
