@@ -12,7 +12,5 @@
 !/log/.keep
 /tmp
 
-bower_components
-
 **/*.DS_Store
 .env
