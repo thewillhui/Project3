@@ -6,10 +6,12 @@ Rails.application.routes.draw do
   get '/secret', to: 'statics#secret'
   get '/searchbox', to: 'statics#searchbox'
 
+  get '/subscriptions', to: 'subscriptions#index'
+
   root 'statics#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :posts, only: [:index, :create]
+  resources :users, only: [:index, :create]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

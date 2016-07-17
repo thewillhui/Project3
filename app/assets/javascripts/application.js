@@ -16,8 +16,8 @@
 //= require jquery-deparam/jquery-deparam
 //= require pubsub-js/src/pubsub
 //= require j-toker/dist/jquery.j-toker
-//= require jquery-ui
 //= require_tree .
+//= require jquery-ui
 
 $.auth.configure({
   // By default, you only need to configure apiUrl
