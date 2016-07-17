@@ -4,4 +4,6 @@ class User < ActiveRecord::Base
           :recoverable, :rememberable, :trackable, :validatable, :omniauthable
           # :confirmable,
   include DeviseTokenAuth::Concerns::User
+  has_many :bookmarks
+  has_many :subscriptions
 end

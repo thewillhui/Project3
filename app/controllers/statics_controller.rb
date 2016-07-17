@@ -5,4 +5,7 @@ class StaticsController < ApplicationController
 
   def secret
   end
+
+  def searchbox
+  end
 end
