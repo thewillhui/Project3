@@ -5,3 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+url = ['http://www.economist.com/sections/international/rss.xml',
+        'https://www.theguardian.com/world/rss']
+        feed = Feedjira::Feed.fetch_and_parse url[0]
+feed_info = {
+  title: feed.title,
+  url: "http://www.economist.com/sections/international/rss.xml"
+}
+newFeed = Feed.create(feed_info)
