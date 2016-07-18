@@ -9,5 +9,9 @@
     "jquery-deparam": "^0.5.1",
     "PubSubJS": "pubsub-js#^1.5.3",
     "j-toker": "^0.0.9"
+  },
+  "resolutions": {
+    "jquery-deparam": "^0.5.1",
+    "jquery": ">=1.2"
   }
 }
