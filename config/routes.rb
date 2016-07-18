@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  mount_devise_token_auth_for 'User', at: 'auth'
-  mount DeviseTokenAuth::Engine => "/auth"
+  mount_devise_token_auth_for 'User', at: 'auth', controllers: {
+    omniauth_callbacks:  'omniauth_callbacks'
+  }
+
   get '/signup', to: 'auth#signup'
   get '/login', to: 'auth#login'
   get '/secret', to: 'statics#secret'
