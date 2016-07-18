@@ -15,7 +15,7 @@ $(document).ready(function() {
   });
 
   // Logout Button
-  $('#logout-button').on('click', function(e){
+  $('#logout').on('click', function(e){
     e.preventDefault();
     $.auth.signOut();
   });
@@ -36,7 +36,7 @@ $(document).ready(function() {
   });
 
   //facebook login
-    $('.fb-login-btn').on('click', function(e){
+  $('.fb-login-btn').on('click', function(e){
     e.preventDefault();
     $.auth.oAuthSignIn({provider: 'facebook'})
       .then(function(user) {
@@ -45,7 +45,7 @@ $(document).ready(function() {
       .fail(function(resp) {
         console.log('Authentication failure: ' + resp.errors.join(' '));
       });
-    });
+  });
 
 
     // test test test
