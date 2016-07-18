@@ -1,0 +1,10 @@
+var $grid = $('.grid').imagesLoaded(function() {
+    $grid.isotope({
+      itemSelector: '.grid-item',
+      layoutMode: 'packery',
+      packery: {
+        columnWidth: 100,
+        gutter: 10
+      }
+    });
+  });
