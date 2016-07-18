@@ -35,4 +35,19 @@ $(document).ready(function() {
     });
   });
 
+  //facebook login
+    $('.fb-login-btn').on('click', function(e){
+    e.preventDefault();
+    $.auth.oAuthSignIn({provider: 'facebook'})
+      .then(function(user) {
+        console.log('Welcome ' + first_name + '!');
+      })
+      .fail(function(resp) {
+        console.log('Authentication failure: ' + resp.errors.join(' '));
+      });
+    });
+
+
+
+
 });

@@ -17,15 +17,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<%= render 'partials/navigation' %>
 
 <div class="container">
   <% flash.each do |key, value| %>
     <div class="alert alert-<%= key %>">
       <%= value %>
     </div>
-  <% end %>
+<% end %>
 
-<%= render 'partials/navigation' %>
 <%= yield %>
 
 </body>

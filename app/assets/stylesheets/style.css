@@ -81,13 +81,6 @@ p {
   color: #00ffcc;
 }
 
-ß
-/*css for feed content*/
-.entry-div img{
-  width: 100%;
-  height: auto;
-}
-
 .page-title, .sign-in-title {
   margin-bottom: 30px;
   text-align: center;
@@ -102,6 +95,19 @@ p {
 
 .fb-login-btn:hover {
   background-image: url("/assets/fb_login_hover.png");
+  cursor: pointer;
+}
+
+.fb-signup-btn {
+  width: 200px;
+  height: 43px;
+  background-image: url("/assets/fb_signup.png");
+  display: block;
+}
+
+.fb-signup-btn:hover {
+  background-image: url("/assets/fb_signup_hover.png");
+  cursor: pointer;
 }
 
 .login-btn, .signup-btn {
@@ -112,5 +118,15 @@ p {
   background-color: #00ffcc;
   border: none;
   display: block;
+}
+
+/*css for feed content*/
+.entry-div img{
+  width: 100%;
+  height: auto;
+}
+
+.thumbnail {
+  background-color: #222;
 }
 
