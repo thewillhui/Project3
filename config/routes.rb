@@ -4,8 +4,10 @@ Rails.application.routes.draw do
     omniauth_callbacks:  'omniauth_callbacks'
   }
 
-  get '/signup', to: 'auth#signup'
-  get '/login', to: 'auth#login'
+  root 'statics#home'
+
+  # get '/signup', to: 'auth#signup'
+  # get '/login', to: 'auth#login'
   get '/secret', to: 'statics#secret'
   get '/searchbox', to: 'statics#searchbox'
 

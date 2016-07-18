@@ -33,7 +33,6 @@ $(document).ready(function(){
 
       var cb = function (e) {
         e.preventDefault();
-
         var params = {
           email: $('#login-modal #login-form input[name="email"]').val(),
           password: $('#login-modal #login-form input[name="password"]').val()
