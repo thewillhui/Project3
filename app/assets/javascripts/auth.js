@@ -1,6 +1,6 @@
 $(document).ready(function(){
   if (!$('body').hasClass('ajax')) { return false; }
-
+console.log("loaded")
   var auth = {
     setAuthButtons: function () {
       var existance = !$.isEmptyObject($.auth.user);
@@ -22,6 +22,7 @@ $(document).ready(function(){
         e.preventDefault();
         $.auth.signOut().then(function(resp){
           that.setAuthButtons();
+          location.href = "/";
         }).fail(function(resp){
           that.setAuthButtons();
         });

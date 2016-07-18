@@ -9,7 +9,7 @@ input {
   margin-bottom: 20px;
 }
 
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h4, h5, h6 {
   font-family: 'Lora', serif;
   color: white;
 }
@@ -45,6 +45,10 @@ p {
   color: #00ffcc;
 }
 
+#signup, #login {
+  cursor:pointer;
+}
+
 .logo {
   font-family: 'Poiret One', cursive;
   color: white;
@@ -67,10 +71,10 @@ p {
 }
 
 .fb-login-btn, .fb-signup-btn {
-  width: 200px;
-  height: 43px;
+  width: 100px;
+  height: 42px;
   background-image: url("/assets/fb_login.png");
-  display: block;
+  display: inline-block;
 }
 
 .fb-login-btn:hover, .fb-signup-btn:hover {
@@ -86,17 +90,23 @@ p {
   background-image: url("/assets/fb_signup_hover.png");
 }
 
-.login-btn, .signup-btn {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  min-width: 200px;
-  height: 43px;
+.btn-signup, .btn-login {
+  height: 42px;
   background-color: #00ffcc;
-  border: none;
-  display: block;
 }
 
+
 /*css for feed content*/
+#feed {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+}
+
+.feed-title {
+  margin-bottom: 30px;
+}
+
 .entry-div img{
   width: 100%;
   height: auto;

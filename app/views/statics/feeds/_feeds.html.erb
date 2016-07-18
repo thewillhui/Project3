@@ -1,4 +1,52 @@
-<div id='feed-container'>
-  <h3>Feed content</h3>
-  <div id='feed' class='row'></div>
+<div class="feed-title">
+  <h1><%= current_user.name%>'s <span class="logo_spoon logo">spoon</span><span class="logo">feed</span></h1>
 </div>
+  <div id='feed' class='row'></div>
+
+<script>
+$.ajax({
+  url: '/subscriptions',
+  method: 'GET',
+  success: function(subscriptions){
+    subscriptions.subscriptions.forEach(function(subscription){
+      subscription.entries.forEach(function(entry){
+        var description = '<div>' + entry.summary + '</div>';
+        var imageUrl = $(description).find('img').attr('src');
+        if (imageUrl){
+
+        }
+        html = '<div class="entry-div col-sm-3">' +
+                  '<div class="thumbnail">' +
+                    '<div class="caption">' +
+                      '<img src="' + imageUrl + '">' +
+                      '<h4>' + entry.title + '</h4>' +
+                      '<p>' + entry.published + '</p>' +
+                    '</div></div></div>';
+        $('#feed').append(html);
+
+
+// while ( m = rex.exec( str ) ) {
+//     urls.push( m[1] );
+// }
+
+// console.log( urls );
+
+    feed.entries.forEach(function(entry){
+      // console.log(entry.summary);
+      var description = '<div>' + entry.summary + '</div>';
+      var imageUrl = $(description).find('img').attr('src');
+      if (imageUrl){
+
+      }
+      html = '<div class="entry-div col-sm-3">' +
+                '<div class="thumbnail">' +
+                  '<div class="caption">' +
+                    '<img src="' + imageUrl + '">' +
+                    '<h4>' + entry.title + '</h4>' +
+                    '<p>' + entry.published + '</p>' +
+                  '</div></div></div>';
+      $('#feed').append(html);
+    })
+  }
+})
+</script>
