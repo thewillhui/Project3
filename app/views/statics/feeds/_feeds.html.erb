@@ -24,19 +24,18 @@ $.ajax({
                     '</div></div></div>';
         $('#feed').append(html);
 
-        console.log("subscriptions loaded")
-
       });
     });
-  var $grid = $('.grid').imagesLoaded(function() {
-  $grid.isotope({
-    itemSelector: '.grid-item',
-    layoutMode: 'packery',
-    packery: {
-      gutter: 10
-    }
-  });
-  });
+    var $grid = $('.grid').imagesLoaded(function() {
+      $grid.isotope({
+        itemSelector: '.grid-item',
+        layoutMode: 'packery',
+        packery: {
+          gutter: 10
+        }
+      });
+    });
   }
-})
+});
+
 </script>

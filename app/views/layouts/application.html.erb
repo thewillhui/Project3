@@ -1,29 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Spoonfeed</title>
-  <script src="https://use.fontawesome.com/5e96df0f22.js"></script>
-  <%= favicon_link_tag "apple-touch-icon.png", sizes: "180x180", rel: "apple-touch-icon"%>
-  <%= favicon_link_tag 'favicon-32x32.png' %>
-  <%= favicon_link_tag 'favicon-16x16.png' %>
-  <%= favicon_link_tag 'manifest.json', rel: "manifest" %>
-  <%= favicon_link_tag 'safari-pinned-tab.svg', rel: "mask-icon", color: "#777" %>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
-</head>
-<body class="ajax <%= controller_name %> <%= action_name %>">
+  <head>
+    <title>Spoonfeed</title>
+    <script src="https://use.fontawesome.com/5e96df0f22.js"></script>
+    <%= favicon_link_tag "apple-touch-icon.png", sizes: "180x180", rel: "apple-touch-icon"%>
+    <%= favicon_link_tag 'favicon-32x32.png' %>
+    <%= favicon_link_tag 'favicon-16x16.png' %>
+    <%= favicon_link_tag 'manifest.json', rel: "manifest" %>
+    <%= favicon_link_tag 'safari-pinned-tab.svg', rel: "mask-icon", color: "#777" %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+  </head>
+    <body class="ajax <%= controller_name %> <%= action_name %>">
 
-<%= render 'partials/navigation' %>
-
-<div class="container">
-  <% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %>">
-      <%= value %>
-    </div>
-<% end %>
-
-<%= yield %>
-
-</body>
+  <%= render 'partials/navigation' %>
+      <div class="container">
+        <%= yield %>
+      </div>
+    </body>
 </html>
