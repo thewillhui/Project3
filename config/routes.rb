@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   root 'statics#home'
 
+  get '/feedlr/search', to: 'feedlr#search'
+
   get '/secret', to: 'statics#secret'
   get '/searchbox', to: 'statics#searchbox'
 
