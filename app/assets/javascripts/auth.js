@@ -15,7 +15,7 @@ $(document).ready(function() {
   });
 
   // Logout Button
-  $('#logout-button').on('click', function(e){
+  $('#logout').on('click', function(e){
     e.preventDefault();
     $.auth.signOut();
   });
