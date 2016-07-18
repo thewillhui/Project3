@@ -18,7 +18,7 @@
 //= require pubsub-js/src/pubsub
 //= require j-toker/dist/jquery.j-toker
 //= require bootstrap/dist/js/bootstrap
-//= require freewall
+//= require freewall/freewall
 //= require_tree .
 
 $.auth.configure({
