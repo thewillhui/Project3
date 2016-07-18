@@ -25,14 +25,30 @@ $(document).ready(function() {
     e.preventDefault();
 
     $.auth.emailSignIn({
-      email: $('#signup-form input[name="email"]').val(),
-      password: $('#signup-form input[name="password"]').val(),
-      password_confirmation: $('#signup-form input[name="password_confirmation"]').val()
+      email: $('#login-form input[name="email"]').val(),
+      password: $('#login-form input[name="password"]').val(),
+      password_confirmation: $('#login-form input[name="password_confirmation"]').val()
     }).then(function(resp){
       console.log(resp);
     }).fail(function(resp){
       console.log(resp);
     });
   });
+
+  //facebook login
+    $('.fb-login-btn').on('click', function(e){
+    e.preventDefault();
+    $.auth.oAuthSignIn({provider: 'facebook'})
+      .then(function(user) {
+        console.log('Welcome ' + first_name + '!');
+      })
+      .fail(function(resp) {
+        console.log('Authentication failure: ' + resp.errors.join(' '));
+      });
+    });
+
+
+    // test test test
+
 
 });
