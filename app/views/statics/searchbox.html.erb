@@ -9,6 +9,26 @@
 
 <script>
 $(document).ready(function(){
+  function subscribe(){
+    // prepare params to be sent to database
+    var params = {
+      subscription: {
+        title: $(this).parent().children('.feed-title').text(),
+        url: $(this).data('feed-url')
+      }
+    };
+    console.log(params);
+    $.ajax({
+      method: 'POST',
+      url: '/subscriptions/add',
+      data: params,
+      success: function(data){
+        console.log(data);
+
+      }
+    })
+  }
+
   function searchFeed(){
     var keyword = $('#searchbox').val();
     $.ajax({
@@ -21,10 +41,10 @@ $(document).ready(function(){
                   '<div class="thumbnail">' +
                     '<img src="' + result.visualUrl + '">' +
                   '<div class="caption">' +
-                    '<h4>' + result.title + '</h4>' +
-                    '<i class="fa fa-plus" aria-hidden="true"></i>' +
+                    '<h4 class="feed-title">' + result.title + '</h4>' +
+                    // store feed url in data attribute
+                    '<a class="add-feed" data-feed-url="' + result.feedId.slice(5) +'" href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>' +
                     '<p>' + result.description + '</p>' +
-                    '<p class="rss-url hidden">' + result.feedId.slice(5) + '</p>' +
                   '</div></div></div>';
           $('#result').append(html);
         })
@@ -34,6 +54,7 @@ $(document).ready(function(){
 
   function init(){
     // on clicking search submit
+    $('#result').on('click', '.add-feed', subscribe)
     $('#searchSubmit').on('click', searchFeed);
   }
   init();
