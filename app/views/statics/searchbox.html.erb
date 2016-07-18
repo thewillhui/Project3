@@ -1,6 +1,6 @@
 <div >
-   <p>Type I OR A</p>
-   <input id="autocomplete-4">
+   <input style="color: black" id="searchbox">
+   <button id='searchSubmit' class="btn btn-default" type="submit">Submit</button>
    <div id='result'>
    </div>
 </div>
@@ -8,12 +8,30 @@
 
 <script>
 $(document).ready(function(){
+  function searchFeed(){
+    var keyword = $('#searchbox').val();
     $.ajax({
       method: 'GET',
-      url: '/feedlr/search?query=hi',
-      success: function(data){
-        console.log(data);
+      url: '/feedlr/search?query='+keyword,
+      success: function(feeds){
+        feeds.results.forEach(function(result){
+          html = '<div class="entry-div col-sm-3">' +
+                  '<div class="thumbnail">' +
+                    '<img src="' + result.visualUrl + '">' +
+                  '<div class="caption">' +
+                    '<h4>' + result.title + '</h4>' +
+                    '<p>' + result.description + '</p>' +
+                  '</div></div></div>';
+          $('#result').append(html);
+        })
       }
     });
+  }
+
+  function init(){
+    // on clicking search submit
+    $('#searchSubmit').on('click', searchFeed);
+  }
+  init();
 })
 </script>
