@@ -6,15 +6,30 @@ $.ajax({
   url: '/subscriptions',
   method: 'GET',
   success: function(feed){
-    console.log(feed.title);
-    console.log(feed.entries);
+
     // console.log(feed.entries);
+// var m,
+//     urls = [],
+//     str = '<img src="http://site.org/one.jpg />\n <img src="http://site.org/two.jpg />',
+//     rex = /<img[^>]+src="?([^"\s]+)"?\s*\/>/g;
+
+// while ( m = rex.exec( str ) ) {
+//     urls.push( m[1] );
+// }
+
+// console.log( urls );
 
     feed.entries.forEach(function(entry){
-      console.log(entry);
+      console.log(entry.summary);
+      var description = '<div>' + entry.summary + '</div>';
+      var imageUrl = $(description).find('img').attr('src');
+      if (imageUrl){
+
+      }
       html = '<div class="entry-div col-sm-3">' +
                 '<div class="thumbnail">' +
                   '<div class="caption">' +
+                    '<img src="' + imageUrl + '">' +
                     '<h4>' + entry.title + '</h4>' +
                     '<p>' + entry.published + '</p>' +
                   '</div></div></div>';

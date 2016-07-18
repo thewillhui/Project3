@@ -6,6 +6,5 @@ class FeedlrController < ApplicationController
 
     @feeds = client.search_feeds(params[:query])
 
-    # render json: feeds
   end
 end

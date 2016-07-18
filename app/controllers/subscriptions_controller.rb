@@ -1,6 +1,6 @@
 class SubscriptionsController < ApplicationController
   def index
-    url = 'http://www.polygon.com/rss/index.xml'
+    url = 'http://www.economist.com/sections/international/rss.xml'
     @feed = Feedjira::Feed.fetch_and_parse url
   end
 
