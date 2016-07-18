@@ -10,8 +10,11 @@ Rails.application.routes.draw do
   # get '/login', to: 'auth#login'
   get '/secret', to: 'statics#secret'
   get '/searchbox', to: 'statics#searchbox'
+  get '/feedlr/search', to: 'feedlr#search'
+
 
   get '/subscriptions', to: 'subscriptions#index'
+  get '/subscriptions/add', to: 'subscriptions#add'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

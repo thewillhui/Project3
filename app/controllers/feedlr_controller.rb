@@ -7,4 +7,8 @@ class FeedlrController < ApplicationController
     @feeds = client.search_feeds(params[:query])
 
   end
+
+  def subscribe
+
+  end
 end

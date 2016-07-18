@@ -15,13 +15,16 @@ $(document).ready(function(){
       method: 'GET',
       url: '/feedlr/search?query='+keyword,
       success: function(feeds){
+        $('#result').html('');
         feeds.results.forEach(function(result){
           html = '<div class="entry-div col-sm-3">' +
                   '<div class="thumbnail">' +
                     '<img src="' + result.visualUrl + '">' +
                   '<div class="caption">' +
                     '<h4>' + result.title + '</h4>' +
+                    '<i class="fa fa-plus" aria-hidden="true"></i>' +
                     '<p>' + result.description + '</p>' +
+                    '<p class="rss-url hidden">' + result.feedId.slice(5) + '</p>' +
                   '</div></div></div>';
           $('#result').append(html);
         })
