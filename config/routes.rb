@@ -9,12 +9,14 @@ Rails.application.routes.draw do
   # get '/signup', to: 'auth#signup'
   # get '/login', to: 'auth#login'
   get '/secret', to: 'statics#secret'
-  get '/search', to: 'statics#searchbox'
+  get '/search', to: 'statics#search'
   get '/feedlr/search', to: 'feedlr#search'
 
 
   get '/subscriptions', to: 'subscriptions#index'
+  get '/subscriptions/folder', to: 'subscriptions#getFolders'
   post '/subscriptions/add', to: 'subscriptions#add'
+  get '/getsubscriptions', to: 'subscriptions#getSubscriptions'
 
   # for testing purpose only
   get '/test/feed', to: 'subscriptions#feed'

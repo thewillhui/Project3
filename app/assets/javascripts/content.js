@@ -1,13 +1,37 @@
 $(document).ready(function () {
   if (!$('body').hasClass('ajax')) { return false; }
   var ajaxFeeds = {
+
+    // get every entries of subscriptions
+    getFolders: function(){
+      $.ajax({
+        url: '/subscriptions/folder',
+        method: 'GET',
+        success: function(folders){
+          // create nav tabs
+          folders.forEach(function(folder){
+            if(folder){
+              navHtml = '<li role="presentation">'+
+                        '<a href="#'+folder+'" aria-controls="'+folder+'" role="tab" data-toggle="tab">' + folder +
+                      '</a></li>';
+              $('.nav-tabs').append(navHtml);
+            // create tab panes
+              tabHtml = '<div role="tabpanel" class="tab-pane" id="' + folder +'">'+folder+'</div>';
+              $('.tab-content').append(tabHtml);
+            }
+
+          })
+          $('.nav-tabs').find('li').first().addClass('active');
+          $('.tab-content').find('div').first().addClass('active');
+        }
+      })
+    },
     getFeeds: function () {
       $.ajax({
         url: '/subscriptions',
         method: 'GET',
-        success: function(subscriptions){
-          console.log(subscriptions);
-          subscriptions.subscriptions.forEach(function(subscription){
+        success: function(data){
+          data.subscriptions.forEach(function(subscription){
             subscription.entries.forEach(function(entry){
               var description = '<div>' + entry.summary + '</div>';
               var imageUrl = $(description).find('img').attr('src');
@@ -25,7 +49,9 @@ $(document).ready(function () {
                         '<p>' + entry.published + '</p>' +
                       '</div></div></div>';
           }
-              $('#feed').append(html);
+              if(subscription.folder){
+                $('#'+subscription.folder).append(html);
+              }
             })
           })
           isotopeGrid();
@@ -72,6 +98,7 @@ $(document).ready(function () {
       });
     },
     init: function () {
+      this.getFolders();
       this.getFeeds();
     }
   };

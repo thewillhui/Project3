@@ -8,9 +8,7 @@
   <div id='result' class='grid row'></div>
 
 <script>
-
-  // $(document).ready(function(){
-
+    // subscribe to new feed source
     function subscribe(){
       // prepare params to be sent to database
       var params = {
@@ -30,7 +28,7 @@
         }
       })
     }
-
+    // search feed for subscribing
     function searchFeed(){
       var keyword = $('#searchbox').val();
       $.ajax({
@@ -43,7 +41,18 @@
                     '<div class="thumbnail">' +
                     '<div class="caption">' +
                       '<h4 class="feed-title">' + result.title + '</h4>' +
-                      '<p>' + result.description + '</p>' + '<a class="add-feed" data-feed-url="' + result.feedId.slice(5) +'" href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>'
+                      '<p>' + result.description + '</p>' + '<a class="add-feed" data-feed-url="' + result.feedId.slice(5) +'" href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>' +
+                      // drop down button for choosing folders
+                      '<div class="btn-group">' +
+                       '<button class="btn btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+                         'Add <span class="caret"></span>' +
+                       '</button>' +
+                       '<ul class="dropdown-menu">' +
+                        '<li><a href="#">News</a></li>' +
+                        '<li><a href="#">Tech</a></li>' +
+                        '<li><a href="#">New Folder</a></li>' +
+                        '<li><input placeholder="new name"><button class="btn btn-defaul">Create</button></li>'+
+                       '</ul></div>'+
                     '</div></div></div>';
             $('#result').append(html).css({width: '100%', height: '100%', display: 'block'});
           })
@@ -59,7 +68,6 @@
       $('#searchSubmit').on('click', searchFeed);
     }
     init();
-  // })
 </script>
 <% else %>
   <h1>You must be logged in to view this page</h1>

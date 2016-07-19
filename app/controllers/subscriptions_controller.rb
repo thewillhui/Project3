@@ -21,12 +21,19 @@ class SubscriptionsController < ApplicationController
         id: db_subscription.id,
         url: db_subscription.url,
         title: db_subscription.title,
+        folder: db_subscription.folder,
         entries: datas
       }
       @subscriptions.push(subscription);
+      @folders = current_user.subscriptions.pluck(:folder).uniq
     end
 
     # url = 'http://www.economist.com/sections/international/rss.xml'
+  end
+
+  def getFolders
+    @folders = current_user.subscriptions.pluck(:folder).uniq
+    render json: @folders
   end
 
   def add
@@ -38,6 +45,10 @@ class SubscriptionsController < ApplicationController
     end
   end
 
+  def getSubscriptions
+    @subscriptions = current_user.subscriptions
+    render json: @subscriptions
+  end
   # for testing purpose only
   def feed
     client = Feedlr::Client.new(oauth_access_token: ENV["FEEDLR_SECRET_KEY"])

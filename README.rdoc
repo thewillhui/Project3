@@ -26,3 +26,14 @@ Things you may want to cover:
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
+
+Fiona's task 19/7
+1. Ask for folder when adding new subscription
+2. pass folder as params to server
+3. sort subscriptions by folder
+4. add folder attribute to index return data
+
+5. manage subscriptions
+  1. return a list of folders
+  2. sort subscriptions according to folders
+  3. jbuilder
