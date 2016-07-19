@@ -5,20 +5,22 @@ $(document).ready(function () {
       $.ajax({
         url: '/subscriptions',
         method: 'GET',
-        success: function(feed){
-          feed.entries.forEach(function(entry){
-            var summary = entry[2][1]
-            var img = $(summary).find('img').attr('src');
-            var stockImg = 'apple-touch-icon.png';
-            var chooseImg =  img ? img: stockImg;
-            console.log('title: ' + entry[0][1]);
-            html = '<div class="entry-div col-sm-3">' +
-            '<img class="thumbnail" src="' + chooseImg + '">' +
-            '<div class="caption">' +
-            '<h4>' + entry[0][1] + '</h4>' +
-            '<p class="published">' + entry[5][1] + '</p>' +
-            '</div></div></div>';
-            $('#feed').append(html);
+        success: function(subscriptions){
+          console.log(subscriptions);
+          subscriptions.subscriptions.forEach(function(subscription){
+            subscription.entries.forEach(function(entry){
+              var description = '<div>' + entry.summary + '</div>';
+              var imageUrl = $(description).find('img').attr('src');
+              if (imageUrl){}
+              html = '<div class="entry-div col-sm-3">' +
+                '<div class="thumbnail">' +
+                '<div class="caption">' +
+                '<img src="' + imageUrl + '">' +
+                '<h4>' + entry.title + '</h4>' +
+                '<p>' + entry.published + '</p>' +
+                '</div></div></div>';
+              $('#feed').append(html);
+            })
           })
         }
       })
