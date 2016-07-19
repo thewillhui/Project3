@@ -1,4 +1,3 @@
-// Testing Modal
 $(document).ready(function(){
   if (!$('body').hasClass('ajax')) { return false; }
 
@@ -118,6 +117,5 @@ $(document).ready(function(){
       this.bindFacebookClick();
     }
   };
-
   auth.init();
 });
