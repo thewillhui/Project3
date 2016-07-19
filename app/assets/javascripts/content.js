@@ -1,7 +1,7 @@
 $(document).ready(function () {
   if (!$('body').hasClass('ajax')) { return false; }
   var ajaxFeeds = {
-    getSources: function () {
+    getFeeds: function () {
       $.ajax({
         url: '/subscriptions',
         method: 'GET',
@@ -33,7 +33,7 @@ $(document).ready(function () {
       })
     },
     // Half finished
-    getSource: function (id, cb) {
+    getFeed: function (id, cb) {
       $.ajax({
         url: '/subscriptions/' + id,
         method: 'get',
@@ -45,7 +45,7 @@ $(document).ready(function () {
         }
       });
     },
-    setSource: function (src, mode) { // on show/edit
+    setFeed: function (src, mode) { // on show/edit
       ajaxPosts.hideAllInModal();
 
       var $modal = $('#src-modal');
@@ -72,7 +72,7 @@ $(document).ready(function () {
       });
     },
     init: function () {
-      this.getSources();
+      this.getFeeds();
     }
   };
   ajaxFeeds.init();
