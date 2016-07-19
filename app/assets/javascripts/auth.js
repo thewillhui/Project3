@@ -9,10 +9,12 @@ console.log("loaded")
         $('#logout').show();
         $('#login').hide();
         $('#signup').hide();
+        $('#search').show();
       } else {
         $('#logout').hide();
         $('#login').show();
         $('#signup').show();
+        $('#search').hide();
       }
     },
     bindLogOutClick: function () {
@@ -84,7 +86,7 @@ console.log("loaded")
     },
     bindFacebookClick: function () {
       // TODO Rex edit this
-      $('.fb-login-btn').on('click', function(e){
+      $('.fb-login-btn, .fb-signup-btn').on('click', function(e){
         e.preventDefault();
         $.auth.oAuthSignIn({
           provider: 'facebook'
@@ -110,12 +112,20 @@ console.log("loaded")
         that.setAuthButtons();
       });
     },
+    bindAddFeedsClick: function () {
+      $('#search').on('click', function (e) {
+        e.preventDefault();
+
+        $('#search-modal').modal('show');
+      });
+    },
     init: function () {
       this.authSettings();
       this.bindLogOutClick();
       this.bindLogInClick();
       this.bindSignUpClick();
       this.bindFacebookClick();
+      this.bindAddFeedsClick();
     }
   };
   auth.init();

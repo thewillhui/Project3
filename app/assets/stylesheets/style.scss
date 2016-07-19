@@ -10,7 +10,7 @@ input {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Lora', serif;
+  font-family: 'Merriweather', serif;
   color: white;
 }
 
@@ -94,9 +94,9 @@ p {
   background-image: url("/assets/fb_signup_hover.png");
 }
 
-.btn-signup, .btn-login, .btn-sp {
+.btn-signup, .btn-login, .btn-sp, .btn-search {
   height: 42px;
-  background-color: #00ffcc;
+  background-color: #0dc5a1;
 }
 
 
@@ -132,6 +132,12 @@ p {
   background-color: #333;
   .close {
     color: white;
+  }
+  .form-group {
+    margin: 20px 5px;
+  }
+  .btn {
+    margin: 10px;
   }
 }
 
