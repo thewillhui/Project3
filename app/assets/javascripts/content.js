@@ -1,5 +1,6 @@
-$(document).ready(function () {
-  if (!$('body').hasClass('ajax')) { return false; }
+$(document).ready(function() {
+  if (!$('body').hasClass('ajax')) {
+    return false; }
   var ajaxFeeds = {
 
     // get every entries of subscriptions
@@ -35,8 +36,8 @@ $(document).ready(function () {
             subscription.entries.forEach(function(entry){
               var description = '<div>' + entry.summary + '</div>';
               var imageUrl = $(description).find('img').attr('src');
-              if (imageUrl){
-            html = '<div class="grid-item entry-div">' +
+              if (imageUrl) {
+                html = '<div class="grid-item entry-div">' +
                   '<img src="' + imageUrl + '">' +
                     '<div class="thumbnail">' +
                       '<div class="caption">' +
@@ -54,6 +55,14 @@ $(document).ready(function () {
               }
             })
           })
+//hides description, opens on click and rearranges with isotope
+          $('.description').slideUp();
+          $('.entry-div').click(function() {
+            $(this).find(".description").slideToggle("fast", function() {
+              $('.grid').isotope("layout")
+            });
+          })
+          //arranges all entry-divs with isotope
           isotopeGrid();
         }
       })
@@ -63,10 +72,10 @@ $(document).ready(function () {
       $.ajax({
         url: '/subscriptions/' + id,
         method: 'get',
-        success: function (src) {
+        success: function(src) {
           cb(src, "show");
         },
-        error: function (resp) {
+        error: function(resp) {
           console.log(resp);
         }
       });
@@ -87,9 +96,9 @@ $(document).ready(function () {
         $modal.modal('show');
       }
     },
-    bindShowClicks: function () {
+    bindShowClicks: function() {
       var that = this;
-      $('.toggle-modal').on('click', function (e) {
+      $('.toggle-modal').on('click', function(e) {
         e.preventDefault();
 
         var id = $(this).data('id');

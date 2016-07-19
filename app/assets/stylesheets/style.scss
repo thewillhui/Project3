@@ -178,5 +178,18 @@ p {
   height: auto;
 }
 
+.grid-item:hover {
+  background: #8CF;
+  cursor: pointer;
+}
+
 .grid-item--width2 { width: 300px; }
 .grid-item--height2 { height: 300px; }
+
+.grid-item.gigante {
+  width: 100%;
+}
+
+.panel-title a {
+  color: white;
+}
