@@ -5,37 +5,35 @@
 <div id='feed' class='grid row'></div>
 
 <script>
-$.ajax({
-  url: '/subscriptions',
-  method: 'GET',
-  success: function(subscriptions){
-    subscriptions.subscriptions.forEach(function(subscription){
-      subscription.entries.forEach(function(entry){
-        var description = '<div>' + entry.summary + '</div>';
-        var imageUrl = $(description).find('img').attr('src');
-        if (imageUrl){
-        }
-        html = '<div class="grid-item entry-div">' +
-                '<img src="' + imageUrl + '">' +
-                  '<div class="thumbnail">' +
-                    '<div class="caption">' +
-                      '<h4>' + entry.title + '</h4>' +
-                      '<p>' + entry.published + '</p>' +
-                    '</div></div></div>';
-        $('#feed').append(html);
+  $.ajax({
+    url: '/subscriptions',
+    method: 'GET',
+    success: function(subscriptions){
+      subscriptions.subscriptions.forEach(function(subscription){
+        subscription.entries.forEach(function(entry){
+          console.log(entry)
+          var description = '<div>' + entry.summary + '</div>';
+          var imageUrl = $(description).find('img').attr('src');
+          if (imageUrl){
+            html = '<div class="grid-item entry-div">' +
+                  '<img src="' + imageUrl + '">' +
+                    '<div class="thumbnail">' +
+                      '<div class="caption">' +
+                        '<h4>' + entry.title + '</h4>' +
+                        '<p>' + entry.published + '</p>' +
+                      '</div></div></div>';
+          } else {
+            html = '<div class="grid-item entry-div">' + '<div class="thumbnail">' + '<div class="caption">' +
+                        '<h4>' + entry.title + '</h4>' +
+                        '<p>' + entry.published + '</p>' +
+                      '</div></div></div>';
+          }
+          $('#feed').append(html)
+        });
+      });
+          isotopeGrid();
 
-      });
-    });
-    var $grid = $('.grid').imagesLoaded(function() {
-      $grid.isotope({
-        itemSelector: '.grid-item',
-        layoutMode: 'packery',
-        packery: {
-          gutter: 10
-        }
-      });
-    });
-  }
-});
+    }
+  });
 
 </script>

@@ -5,12 +5,11 @@
      <button id='searchSubmit' class="btn btn-sp" type="submit">Submit</button>
   </div>
 
-  <div id='result' class='grid'></div>
+  <div id='result' class='grid row'></div>
 
-  <%= render 'statics/feeds/feeds' %>
+<script>
 
-  <script>
-  $(document).ready(function(){
+  // $(document).ready(function(){
     function subscribe(){
       // prepare params to be sent to database
       var params = {
@@ -45,10 +44,9 @@
                       '<h4 class="feed-title">' + result.title + '</h4>' +
                       '<p>' + result.description + '</p>' + '<a class="add-feed" data-feed-url="' + result.feedId.slice(5) +'" href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>'
                     '</div></div></div>';
-            $('#result').append(html);
+            $('#result').append(html).css({width: '100%', height: '100%', display: 'block'});
           })
-
-
+          isotopeGrid();
         }
       });
     }
@@ -59,8 +57,8 @@
       $('#searchSubmit').on('click', searchFeed);
     }
     init();
-  })
-  </script>
+  // })
+</script>
 <% else %>
-<h1>You must be logged in to view this page</h1>
+  <h1>You must be logged in to view this page</h1>
 <% end %>

@@ -107,12 +107,14 @@ p {
   margin: auto;
 }
 
-#result {
+.result {
+  height:100%;
   display: block;
 }
 
 .feed-title {
   margin-bottom: 30px;
+  display: block;
 }
 
 .entry-div img{

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # get '/signup', to: 'auth#signup'
   # get '/login', to: 'auth#login'
   get '/secret', to: 'statics#secret'
-  get '/searchbox', to: 'statics#searchbox'
+  get '/search', to: 'statics#searchbox'
   get '/feedlr/search', to: 'feedlr#search'
 
 
