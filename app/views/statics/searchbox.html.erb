@@ -1,63 +1,66 @@
-<%= render 'statics/feeds/feeds' %>
-<div >
-   <input style="color: black" id="searchbox">
-   <button id='searchSubmit' class="btn btn-default" type="submit">Submit</button>
-   <div id='result'>
-   </div>
-</div>
+<% if user_signed_in? %>
+  <div>
+    <h3>Find new feeds</h3>
+     <input style="color: black" id="searchbox">
+     <button id='searchSubmit' class="btn btn-sp" type="submit">Submit</button>
+  </div>
 
-<h3>Subscriptions</h3>
+  <div id='result' class='grid row'></div>
 
 <script>
-$(document).ready(function(){
-  function subscribe(){
-    // prepare params to be sent to database
-    var params = {
-      subscription: {
-        title: $(this).parent().children('.feed-title').text(),
-        url: $(this).data('feed-url')
-      }
-    };
-    console.log(params);
-    $.ajax({
-      method: 'POST',
-      url: '/subscriptions/add',
-      data: params,
-      success: function(data){
-        console.log(data);
 
-      }
-    })
-  }
+  // $(document).ready(function(){
 
-  function searchFeed(){
-    var keyword = $('#searchbox').val();
-    $.ajax({
-      method: 'GET',
-      url: '/feedlr/search?query='+keyword,
-      success: function(feeds){
-        $('#result').html('');
-        feeds.results.forEach(function(result){
-          html = '<div class="entry-div col-sm-3">' +
-                  '<div class="thumbnail">' +
-                    '<img src="' + result.visualUrl + '">' +
-                  '<div class="caption">' +
-                    '<h4 class="feed-title">' + result.title + '</h4>' +
-                    // store feed url in data attribute
-                    '<a class="add-feed" data-feed-url="' + result.feedId.slice(5) +'" href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>' +
-                    '<p>' + result.description + '</p>' +
-                  '</div></div></div>';
-          $('#result').append(html);
-        })
-      }
-    });
-  }
+    function subscribe(){
+      // prepare params to be sent to database
+      var params = {
+        subscription: {
+          title: $(this).parent().children('.feed-title').text(),
+          url: $(this).data('feed-url')
+        }
+      };
+      console.log(params);
+      $.ajax({
+        method: 'POST',
+        url: '/subscriptions/add',
+        data: params,
+        success: function(data){
+          console.log(data);
 
-  function init(){
-    // on clicking search submit
-    $('#result').on('click', '.add-feed', subscribe)
-    $('#searchSubmit').on('click', searchFeed);
-  }
-  init();
-})
+        }
+      })
+    }
+
+    function searchFeed(){
+      var keyword = $('#searchbox').val();
+      $.ajax({
+        method: 'GET',
+        url: '/feedlr/search?query='+keyword,
+        success: function(feeds){
+          $('#result').html('');
+          feeds.results.forEach(function(result){
+            html = '<div class="grid-item entry-div">' + '<img src="' + result.visualUrl + '">' +
+                    '<div class="thumbnail">' +
+                    '<div class="caption">' +
+                      '<h4 class="feed-title">' + result.title + '</h4>' +
+                      '<p>' + result.description + '</p>' + '<a class="add-feed" data-feed-url="' + result.feedId.slice(5) +'" href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>'
+                    '</div></div></div>';
+            $('#result').append(html).css({width: '100%', height: '100%', display: 'block'});
+          })
+          isotopeGrid();
+
+        }
+      });
+    }
+
+    function init(){
+      // on clicking search submit
+      $('#result').on('click', '.add-feed', subscribe)
+      $('#searchSubmit').on('click', searchFeed);
+    }
+    init();
+  // })
 </script>
+<% else %>
+  <h1>You must be logged in to view this page</h1>
+<% end %>

@@ -27,27 +27,6 @@ ActiveRecord::Schema.define(version: 20160718081957) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "entries", force: :cascade do |t|
-    t.string   "title"
-    t.string   "feed_id"
-    t.string   "url"
-    t.string   "author"
-    t.text     "content"
-    t.string   "image_url"
-    t.string   "published"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "feeds", force: :cascade do |t|
-    t.string   "title"
-    t.string   "url"
-    t.text     "description"
-    t.string   "image_url"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
   create_table "subscriptions", force: :cascade do |t|
     t.string   "url"
     t.datetime "created_at", null: false

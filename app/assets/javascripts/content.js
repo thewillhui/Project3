@@ -11,17 +11,24 @@ $(document).ready(function () {
             subscription.entries.forEach(function(entry){
               var description = '<div>' + entry.summary + '</div>';
               var imageUrl = $(description).find('img').attr('src');
-              if (imageUrl){}
-              html = '<div class="entry-div col-sm-3">' +
-                '<div class="thumbnail">' +
-                '<div class="caption">' +
-                '<img src="' + imageUrl + '">' +
-                '<h4>' + entry.title + '</h4>' +
-                '<p>' + entry.published + '</p>' +
-                '</div></div></div>';
+              if (imageUrl){
+            html = '<div class="grid-item entry-div">' +
+                  '<img src="' + imageUrl + '">' +
+                    '<div class="thumbnail">' +
+                      '<div class="caption">' +
+                        '<h4>' + entry.title + '</h4>' +
+                        '<p>' + entry.published + '</p>' +
+                      '</div></div></div>';
+          } else {
+            html = '<div class="grid-item entry-div">' + '<div class="thumbnail">' + '<div class="caption">' +
+                        '<h4>' + entry.title + '</h4>' +
+                        '<p>' + entry.published + '</p>' +
+                      '</div></div></div>';
+          }
               $('#feed').append(html);
             })
           })
+          isotopeGrid();
         }
       })
     },

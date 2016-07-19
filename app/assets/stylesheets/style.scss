@@ -9,7 +9,7 @@ input {
   margin-bottom: 20px;
 }
 
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h4, h5, h6 {
   font-family: 'Lora', serif;
   color: white;
 }
@@ -37,12 +37,20 @@ p {
 }
 
 .navbar-header {
-    padding-left: 10px;
-    padding-right: 20px;
+  padding-left: 10px;
+  padding-right: 20px;
 }
 
 .navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
   color: #00ffcc;
+}
+
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+  background-color: #00ffcc;
+}
+
+#signup, #login {
+  cursor:pointer;
 }
 
 .logo {
@@ -67,10 +75,10 @@ p {
 }
 
 .fb-login-btn, .fb-signup-btn {
-  width: 200px;
-  height: 43px;
+  width: 100px;
+  height: 42px;
   background-image: url("/assets/fb_login.png");
-  display: block;
+  display: inline-block;
 }
 
 .fb-login-btn:hover, .fb-signup-btn:hover {
@@ -86,17 +94,29 @@ p {
   background-image: url("/assets/fb_signup_hover.png");
 }
 
-.login-btn, .signup-btn {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  min-width: 200px;
-  height: 43px;
+.btn-signup, .btn-login, .btn-sp {
+  height: 42px;
   background-color: #00ffcc;
-  border: none;
+}
+
+
+/*css for feed content*/
+#feed {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+}
+
+.result {
+  height:100%;
   display: block;
 }
 
-/*css for feed content*/
+.feed-title {
+  margin-bottom: 30px;
+  display: block;
+}
+
 .entry-div img{
   width: 100%;
   height: auto;
@@ -104,6 +124,7 @@ p {
 
 .thumbnail {
   background-color: #222;
+  border: none;
 }
 
 /* css for modals */
@@ -113,3 +134,28 @@ p {
     color: white;
   }
 }
+
+/* styles for masonary grid */
+
+.grid {
+  max-width: 100%;
+  position: relative;
+}
+
+/* clear fix */
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* ---- .grid-item ---- */
+
+.grid-item {
+  float: left;
+  width: 250px;
+  height: auto;
+}
+
+.grid-item--width2 { width: 300px; }
+.grid-item--height2 { height: 300px; }

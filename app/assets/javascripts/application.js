@@ -17,7 +17,10 @@
 //= require jquery-ui/jquery-ui
 //= require pubsub-js/src/pubsub
 //= require j-toker/dist/jquery.j-toker
-//= require bootstrap/dist/js/bootstrap
+//= require bootstrap/dist/js/bootstrap.min
+//= require isotope/dist/isotope.pkgd.min
+//= require isotope-packery/packery-mode.pkgd.min
+//= require imagesloaded/imagesloaded.pkgd.min
 //= require_tree .
 
 $.auth.configure({
