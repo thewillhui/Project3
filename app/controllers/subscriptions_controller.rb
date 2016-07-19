@@ -25,7 +25,6 @@ class SubscriptionsController < ApplicationController
       }
       @subscriptions.push(subscription);
     end
-    # user subscription is sorted by rss source and data.published. Any ways to sort out of data.published?
 
     # url = 'http://www.economist.com/sections/international/rss.xml'
   end
