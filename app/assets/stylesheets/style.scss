@@ -10,7 +10,7 @@ input {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Lora', serif;
+  font-family: 'Merriweather', serif;
   color: white;
 }
 
@@ -94,9 +94,9 @@ p {
   background-image: url("/assets/fb_signup_hover.png");
 }
 
-.btn-signup, .btn-login, .btn-sp {
+.btn-signup, .btn-login, .btn-sp, .btn-search, .btn-source {
   height: 42px;
-  background-color: #00ffcc;
+  background-color: #0dc5a1;
 }
 
 
@@ -130,8 +130,29 @@ p {
 /* css for modals */
 .modal-content {
   background-color: #333;
+  overflow: hidden;
+  .source-container {
+    padding: 5px;
+  }
   .close {
     color: white;
+  }
+  .form-group {
+    margin: 20px 5px;
+  }
+  .btn {
+    margin: 10px;
+  }
+  .title-template {
+    background-color: #afafaf;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  .source-content {
+    color: black;
+  }
+  hr {
+    border-color: #333333;
   }
 }
 
