@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get '/subscriptions/folder', to: 'subscriptions#getFolders'
   post '/subscriptions/add', to: 'subscriptions#add'
   get '/getsubscriptions', to: 'subscriptions#getSubscriptions'
+  get '/manage', to: 'subscriptions#manage'
 
   # for testing purpose only
   get '/test/feed', to: 'subscriptions#feed'

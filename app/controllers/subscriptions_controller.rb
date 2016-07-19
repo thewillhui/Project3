@@ -31,6 +31,27 @@ class SubscriptionsController < ApplicationController
     # url = 'http://www.economist.com/sections/international/rss.xml'
   end
 
+  def manage
+    @folders = []
+    db_folders = current_user.subscriptions.pluck(:folder).uniq
+    db_folders.each do |db_folder|
+      folder = {
+        name: db_folder,
+        subscriptions: []
+      }
+      current_user.subscriptions.where(folder: db_folder).each do |db_subscription|
+        subscription = {
+          title: db_subscription.title,
+          id: db_subscription.id,
+          logoUrl: db_subscription.logoUrl
+        }
+        folder[:subscriptions].push(subscription)
+      end
+      @folders.push(folder)
+    end
+    render json: @folders
+  end
+
   def getFolders
     @folders = current_user.subscriptions.pluck(:folder).uniq
     render json: @folders
