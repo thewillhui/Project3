@@ -17,19 +17,3 @@ var isotopeGrid = function() {
     });
   });
 }
-
-$(document).ready(function() {
-  // $('#feed').on( 'click', '.grid-item', function() {
-  //   console.log("click")
-  //   // change size of item by toggling gigante class
-  //   $( this ).toggleClass('gigante');
-  //   $('#feed').isotope('layout');
-console.log('=================')
-  $('.description').slideUp();
-  $('.entry-div').click(function() {
-    console.log('click')
-    $(this).next(".description").slideToggle(function() {
-      $('.grid').isotope("layout")
-    });
-  })
-})

@@ -186,10 +186,15 @@ p {
 .grid-item--width2 { width: 300px; }
 .grid-item--height2 { height: 300px; }
 
-.grid-item.gigante {
-  width: 100%;
+.gigante {
+  width: 50%;
+  z-index: 1;
 }
 
 .panel-title a {
   color: white;
+}
+
+.description {
+  color: #999;
 }
