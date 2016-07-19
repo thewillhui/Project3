@@ -16,6 +16,10 @@ Rails.application.routes.draw do
   get '/subscriptions', to: 'subscriptions#index'
   post '/subscriptions/add', to: 'subscriptions#add'
 
+  # for testing purpose only
+  get '/test/feed', to: 'subscriptions#feed'
+  get '/test/entry', to: 'subscriptions#entries'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

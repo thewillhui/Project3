@@ -38,6 +38,20 @@ class SubscriptionsController < ApplicationController
     end
   end
 
+  # for testing purpose only
+  def feed
+    client = Feedlr::Client.new(oauth_access_token: ENV["FEEDLR_SECRET_KEY"])
+
+    @entries = client.search_feeds('economist')
+    render json: @entries
+  end
+
+  def entries
+    url = 'http://www.economist.com/sections/international/rss.xml'
+    @feed = Feedjira::Feed.fetch_and_parse url
+    render json: @feed
+  end
+
 private
   def subscription_params
     params.require(:subscription).permit(:title, :url)

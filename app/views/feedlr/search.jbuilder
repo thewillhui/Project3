@@ -1,4 +1,4 @@
-json.title @feeds.queryType
+json.key @feeds.hint
 json.results do
   json.array! @feeds.results do |result|
     json.title result.title
