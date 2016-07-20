@@ -14,17 +14,19 @@ $(document).ready(function() {
           folders.forEach(function(folder) {
             if (folder) {
               navHtml = '<li role="presentation">' +
-                '<a href="#' + folder + '" aria-controls="' + folder + '" role="tab" data-toggle="tab">' + folder +
+                '<a class="folder-tab" href="#' + folder + '" aria-controls="' + folder + '" role="tab" data-toggle="tab">' + folder +
                 '</a></li>';
               $('.nav-tabs').append(navHtml);
               // create tab panes
               tabHtml = '<div role="tabpanel" class="tab-pane" id="' + folder + '">' + folder + '</div>';
               $('.tab-content').append(tabHtml);
             }
-
           })
           $('.nav-tabs').find('li').first().addClass('active');
           $('.tab-content').find('div').first().addClass('active');
+          $('.grid').on('click', '.folder-tab', function(){
+            isotopeGrid();
+          })
         }
       })
     },
@@ -61,9 +63,9 @@ $(document).ready(function() {
           $('.description').slideUp();
           $('.entry-div').click(function() {
               $(this).find(".head-img").toggle();
-              $(this).toggleClass("gigante").find(".description").slideToggle("fast", function() {
-                $('.grid').isotope("layout")
-              });
+              // $(this).toggleClass("gigante").find(".description").slideToggle("fast", function() {
+              //   $('.grid').isotope("layout")
+              // });
             })
             //arranges all entry-divs with isotope
           isotopeGrid();
