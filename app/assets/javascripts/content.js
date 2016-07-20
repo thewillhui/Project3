@@ -19,15 +19,15 @@ $(document).ready(function() {
                 '</a></li>';
               $('.nav-tabs').append(navHtml);
               // create tab panes
-              tabHtml = '<div role="tabpanel" class="tab-pane" id="' + folder + '">' + folder + '</div>';
+              tabHtml = '<div role="tabpanel" class="tab-pane grid" id="' + folder + '">' + folder + '</div>';
               $('.tab-content').append(tabHtml);
             }
           })
           $('.nav-tabs').find('li').first().addClass('active');
           $('.tab-content').find('div').first().addClass('active');
-          $('.grid').on('click', '.folder-tab', function(){
-            isotopeGrid();
-          })
+          $('.folder-tab').on('click', function() {
+              setTimeout(isotopeGrid, 50)
+  })
         }
       })
     },

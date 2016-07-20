@@ -1,13 +1,6 @@
-var $grid = $('.grid').isotope({
-  itemSelector: '.grid-item',
-  layoutMode: 'packery',
-  packery: {
-    gutter: 10
-  }
-});
-
-var isotopeGrid = function() {
-  var $grid = $('.grid').imagesLoaded(function() {
+$(document).ready(function() {
+  var $grid = $('.grid.active');
+  $grid.imagesLoaded(function() {
     $grid.isotope({
       itemSelector: '.grid-item',
       layoutMode: 'packery',
@@ -15,5 +8,21 @@ var isotopeGrid = function() {
         gutter: 10
       }
     });
-  });
+  })
+
+
+  console.log("loaded isotope.js")
+})
+
+var isotopeGrid = function() {
+  var $grid = $('.grid.active');
+  $grid.imagesLoaded(function() {
+    $grid.isotope({
+      itemSelector: '.grid-item',
+      layoutMode: 'packery',
+      packery: {
+        gutter: 10
+      }
+    });
+  })
 }
