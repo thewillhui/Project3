@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get '/feedlr/search', to: 'feedlr#search'
 
 
+
   get '/subscriptions', to: 'subscriptions#index'
   get '/subscriptions/folder', to: 'subscriptions#getFolders'
   post '/subscriptions/add', to: 'subscriptions#add'

@@ -7,6 +7,37 @@
   </ul>
   <div class="tab-content grid"></div>
 
+ <div class="modal fade" id="feed_content" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary bookmark">Bookmark</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  console.log('hello there');
+
+    $('.grid').on('click', '.grid-item', function(){
+      // console.log(feeds);
+      var origlink = $(this).find('.title').data('entryid');
+      var entry = feeds.find(function(feed){
+        return feed.origlink == origlink;
+      })
+      $('.modal-header').text(entry.title);
+      $('.modal-body').html(entry.description);
+      $('.bookmark').attr('data-entry', entry.origlink);
+    });
+
+  </script>
 <!-- tab HTML, leave here for reference first -->
 <!-- <div> -->
   <!-- Nav tabs -->
