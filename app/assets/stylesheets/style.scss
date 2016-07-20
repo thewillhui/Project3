@@ -1,6 +1,10 @@
-
-
-
+$orange: #ee7147;
+$green: #59b390;
+$lightest-grey: #eee;
+$grey: #d0d3d2;
+$mid-grey: #a2a7a6;
+$dark-grey: #2b2b2b;
+$logo-green: #00ffcc;
 
 body {
   background-color: #333;
@@ -23,7 +27,7 @@ p {
 }
 
 .navbar-default {
-  background-color: #222;
+  background-color: $dark-grey;
   border-color: #111;
 }
 
@@ -45,11 +49,11 @@ p {
 }
 
 .navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
-  color: #00ffcc;
+  color: $logo-green;
 }
 
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-  background-color: #00ffcc;
+  background-color: $logo-green;
 }
 
 #signup, #login, #search{
@@ -69,7 +73,7 @@ p {
 }
 
 .logo_spoon {
-  color: #00ffcc;
+  color: $logo-green;
 }
 
 .page-title, .sign-in-title {
