@@ -1,72 +1,10 @@
 <% if user_signed_in? %>
   <div>
     <h3>Find new feeds</h3>
-     <input style="color: black" id="searchbox">
-     <button id='searchSubmit' class="btn btn-sp" type="submit">Submit</button>
-  </div>
-
-  <div id='result' class='grid row'></div>
-
-<script>
-    // subscribe to new feed source
-    function subscribe(){
-      // prepare params to be sent to database
-      var params = {
-        subscription: {
-          title: $(this).parent().children('.feed-title').text(),
-          url: $(this).data('feed-url')
-        }
-      };
-      console.log(params);
-      $.ajax({
-        method: 'POST',
-        url: '/subscriptions/add',
-        data: params,
-        success: function(data){
-          console.log(data);
-
-        }
-      })
-    }
-    // search feed for subscribing
-    function searchFeed(){
-      var keyword = $('#searchbox').val();
-      $.ajax({
-        method: 'GET',
-        url: '/feedlr/search?query='+keyword,
-        success: function(feeds){
-          $('#result').html('');
-          feeds.results.forEach(function(result){
-            html = '<div class="grid-item entry-div">' + '<img src="' + result.visualUrl + '">' +
-                    '<div class="thumbnail">' +
-                    '<div class="caption">' +
-                      '<h4 class="feed-title">' + result.title + '</h4>' +
-                      '<p>' + result.description + '</p>' + '<a class="add-feed" data-feed-url="' + result.feedId.slice(5) +'" href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>' +
-                      // drop down button for choosing folders
-                      '<div class="btn-group">' +
-                       '<button class="btn btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
-                         'Add <span class="caret"></span>' +
-                       '</button>' +
-                       '<ul class="dropdown-menu">' +
-                        '<li><a href="#">News</a></li>' +
-                        '<li><a href="#">Tech</a></li>' +
-                        '<li><a href="#">New Folder</a></li>' +
-                        '<li><input placeholder="new name"><button class="btn btn-defaul">Create</button></li>'+
-                       '</ul></div>'+
-                    '</div></div></div>';
-            $('#result').append(html).css({width: '100%', height: '100%', display: 'block'});
-          })
-        }
-      });
-    }
-
-    function init(){
-      // on clicking search submit
-      $('#result').on('click', '.add-feed', subscribe)
-      $('#searchSubmit').on('click', searchFeed);
-    }
-    init();
-</script>
-<% else %>
-  <h1>You must be logged in to view this page</h1>
+      <input style="color: black" id="searchbox">
+      <button id='searchSubmit' class="btn btn-sp" type="submit">Submit</button>
+    </div>
+    <div class='grid row'></div>
+  <% else %>
+    <h1>You must be logged in to view this page</h1>
 <% end %>
