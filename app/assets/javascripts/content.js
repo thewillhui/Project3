@@ -31,35 +31,6 @@ $(document).ready(function() {
         }
       })
     },
-    // getFeeds: function(){
-    //   subscriptions.forEach(function(subscription){
-    //     console.log(subscription);
-    //   });
-
-        // feednami.load(subscription.url, function(result){
-        //   if(result.error){
-        //     console.log(result.error)
-        //   }
-        //   else {
-        //     console.log(result);
-            // var entries = result.feed.entries
-            // entries.forEach(function(entry){
-            //   console.log(entry.image);
-               // html = '<div class="grid-item entry-div" data-toggle="modal" data-target="#feed_content">' +
-               //      '<img class="head-img" src="' + imageUrl + '">' +
-               //      '<div class="thumbnail">' +
-               //      '<div class="caption">' +
-               //      '<h4 class="title" data-entryid="'+entry.entry_id+'">' + entry.title + '</h4>' +
-               //      // '<div class="description"><p>' + entry.summary + '</p>' +
-               //       '<p>' + entry.published + '</p>' +
-               //      '</div></div></div></div>';
-
-            // })
-      //     }
-      //   })
-
-      // })
-    // },
 
     getSubscriptions: function(){
       $.ajax({
@@ -103,41 +74,7 @@ $(document).ready(function() {
         }
       })
     },
-    // getFeeds: function() {
-    //   $.ajax({
-    //     url: '/subscriptions',
-    //     method: 'GET',
-    //     success: function(data) {
-    //       feeds = [];
-    //       data.subscriptions.forEach(function(subscription) {
-    //           subscription.entries.forEach(function(entry) {
-    //             feeds.push(entry);
-    //             var description = '<div>' + entry.summary + '</div>';
-    //             var imageUrl = $(description).find('img').attr('src');
-    //             if (imageUrl) {
-    //               html = '<div class="grid-item entry-div" data-toggle="modal" data-target="#feed_content">' +
-    //                 '<img class="head-img" src="' + imageUrl + '">' +
-    //                 '<div class="thumbnail">' +
-    //                 '<div class="caption">' +
-    //                 '<h4 class="title" data-entryid="'+entry.entry_id+'">' + entry.title + '</h4>' +
-    //                 // '<div class="description"><p>' + entry.summary + '</p>' +
-    //                  '<p>' + entry.published + '</p>' +
-    //                 '</div></div></div></div>';
 
-    //             } else {
-    //               html = '<div class="grid-item entry-div">' + '<div class="thumbnail">' + '<div class="caption">' +
-    //                 '<h4>' + entry.title + '</h4>' + '<div class="description"><p>' + entry.summary + '</p>' + '<p>' + entry.published + '</p>' +
-    //                 '</div></div></div></div>';
-    //             }
-    //             if (subscription.folder) {
-    //               $('#' + subscription.folder).append(html);
-    //             }
-    //           })
-    //         })
-    //     }
-    //   })
-    // },
-    // Half finished
     getFeed: function(id, cb) {
       $.ajax({
         url: '/subscriptions/' + id,
