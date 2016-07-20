@@ -36,30 +36,30 @@ $(document).ready(function() {
         method: 'GET',
         success: function(data) {
           data.subscriptions.forEach(function(subscription) {
-              subscription.entries.forEach(function(entry) {
-                var description = '<div>' + entry.summary + '</div>';
-                var imageUrl = $(description).find('img').attr('src');
-                if (imageUrl) {
-                  html = '<div class="grid-item entry-div">' +
-                    '<img class="head-img" src="' + imageUrl + '">' +
-                    '<div class="thumbnail">' +
-                    '<div class="caption">' +
-                    '<h4>' + entry.title + '</h4>' +
-                    '<div class="description"><p>' + entry.summary + '</p>' + '<p>' + entry.published + '</p>' +
-                    '</div></div></div></div>';
-                } else {
-                  html = '<div class="grid-item entry-div">' + '<div class="thumbnail">' + '<div class="caption">' +
-                    '<h4>' + entry.title + '</h4>' + '<div class="description"><p>' + entry.summary + '</p>' + '<p>' + entry.published + '</p>' +
-                    '</div></div></div></div>';
-                }
-                if (subscription.folder) {
-                  $('#' + subscription.folder).append(html);
-                }
-                var youtube = $('iframe[src*="youtube.com"]')
-                youtube.addClass('col-xs-12');
-              })
+            subscription.entries.forEach(function(entry) {
+              var description = '<div>' + entry.summary + '</div>';
+              var imageUrl = $(description).find('img').attr('src');
+              if (imageUrl) {
+                html = '<div class="grid-item entry-div">' +
+                  '<img class="head-img" src=' + imageUrl + '>' +
+                  '<div class="thumbnail">' +
+                  '<div class="caption">' +
+                  '<h4>' + entry.title + '</h4>' +
+                  '<div class="description"><p>' + entry.summary + '</p>' + '<p>' + entry.published + '</p>' +
+                  '</div></div></div></div>';
+              } else {
+                html = '<div class="grid-item entry-div">' + '<div class="thumbnail">' + '<div class="caption">' +
+                  '<h4>' + entry.title + '</h4>' + '<div class="description"><p>' + entry.summary + '</p>' + '<p>' + entry.published + '</p>' +
+                  '</div></div></div></div>';
+              }
+              if (subscription.folder) {
+                $('#' + subscription.folder).append(html);
+              }
+              var youtube = $('iframe[src*="youtube.com"]')
+              youtube.addClass('col-xs-12');
             })
-            //hides description, opens on click and rearranges with isotope
+          })
+          //hides description, opens on click and rearranges with isotope
           $('.description').slideUp();
           $('.entry-div').click(function() {
               $(this).find(".head-img").toggle();
