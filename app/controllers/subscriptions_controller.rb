@@ -1,4 +1,5 @@
 class SubscriptionsController < ApplicationController
+  before_action :authenticate_user!
   def index
     @folders = current_user.subscriptions.pluck(:folder).uniq
 
@@ -36,10 +37,10 @@ class SubscriptionsController < ApplicationController
 
   def add
     subscription = current_user.subscriptions.new(subscription_params)
-    if subscription.save
+    if subscription.save && Subscription.exists?(title: params[:title])
       render json: subscription
     else
-      render json: @post.errors.messages, status: 400
+      render json: subscription.errors.messages, status: 400
     end
   end
 

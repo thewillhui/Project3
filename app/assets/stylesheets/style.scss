@@ -130,7 +130,7 @@ p {
 /* css for modals */
 .modal-content {
   background-color: #333;
-  overflow: hidden;
+  overflow: scroll;
   .source-container {
     padding: 5px;
   }
@@ -154,8 +154,22 @@ p {
   hr {
     border-color: #333333;
   }
-}
+  h5 {
+    margin: 0px;
+  }
+  .feed-container{
+    margin-bottom: 10px;
+  }
 
+  .subscribe-btn{
+    position: relative;
+    display: inline-block;
+  }
+
+  .subscribe {
+    cursor: pointer;
+  }
+}
 /* styles for masonary grid */
 
 .grid {
