@@ -13,9 +13,5 @@ class StaticsController < ApplicationController
     #     @data = data
     #   }
     # })
-
-
   end
-
-
 end

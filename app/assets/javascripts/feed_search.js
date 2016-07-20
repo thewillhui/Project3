@@ -7,6 +7,7 @@ console.log("loaded")
         subscription: {
           title: $(this).parent().children('.feed-title').text(),
           url: $(this).data('feed-url')
+          folder:
         }
       };
       console.log(params);
@@ -19,6 +20,7 @@ console.log("loaded")
         }
       })
     },
+
     searchFeed: function() {
       var keyword = $('#searchbox').val();
       $.ajax({
@@ -26,9 +28,7 @@ console.log("loaded")
         url: '/feedlr/search?query='+keyword,
         success: function(feeds){
           $('#result').html('');
-          debugger
           feeds.results.forEach(function(result){
-            debugger
             html = '<div class="feed-container col-md-6 col-sm-12"><div class="title-template"><img src="' + result.visualUrl +
                                 '" style="width: 100%; height: 100%;"><h6 class="feed-content feed-title">' + result.title +
                                 '</h6><div class="feed-content feed-description">' + result.description +
