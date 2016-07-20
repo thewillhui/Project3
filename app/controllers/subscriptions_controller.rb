@@ -28,8 +28,6 @@ class SubscriptionsController < ApplicationController
     render json: @folders
   end
 
-
-
   def getFolders
     @folders = current_user.subscriptions.pluck(:folder).uniq
     render json: @folders
@@ -37,7 +35,7 @@ class SubscriptionsController < ApplicationController
 
   def add
     subscription = current_user.subscriptions.new(subscription_params)
-    if subscription.save && Subscription.exists?(title: params[:title])
+    if subscription.save && !current_user.subscriptions.exists?(title: params[:subscription][:title])
       render json: subscription
     else
       render json: subscription.errors.messages, status: 400

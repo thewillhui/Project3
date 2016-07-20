@@ -26,29 +26,28 @@ $(document).ready(function() {
           $('.nav-tabs').find('li').first().addClass('active');
           $('.tab-content').find('div').first().addClass('active');
           $('.folder-tab').on('click', function() {
-              setTimeout(isotopeGrid, 50)
-  })
+            setTimeout(isotopeGrid, 50)
+          })
         }
       })
     },
 
-    getSubscriptions: function(){
+    getSubscriptions: function() {
       $.ajax({
         url: '/manage',
         method: 'GET',
-        success: function(data){
+        success: function(data) {
           feeds = [];
-          for (var key in data){
-            subscriptions.push({'url': data[key][0].url, 'folder': data[key][0].folder});
+          for (var key in data) {
+            subscriptions.push({ 'url': data[key][0].url, 'folder': data[key][0].folder });
           }
-          subscriptions.forEach(function(subscription){
-            feednami.load(subscription.url, function(result){
-              if(result.error){
+          subscriptions.forEach(function(subscription) {
+            feednami.load(subscription.url, function(result) {
+              if (result.error) {
                 console.log(result.error)
-              }
-              else {
+              } else {
                 var entries = result.feed.entries;
-                entries.forEach(function(entry){
+                entries.forEach(function(entry) {
                   feeds.push(entry);
                   var description = '<div>' + entry.description + '</div>';
                   var imageUrl = $(description).find('img').attr('src');
@@ -56,10 +55,10 @@ $(document).ready(function() {
                     '<img class="head-img" src="' + imageUrl + '">' +
                     '<div class="thumbnail">' +
                     '<div class="caption">' +
-                    '<h4 class="title" data-entryid="'+entry.origlink+'">' + entry.title + '</h4>' +
-                     '<p>' + entry.date + '</p>' +
+                    '<h4 class="title" data-entryid="' + entry.origlink + '">' + entry.title + '</h4>' +
+                    '<p>' + entry.date + '</p>' +
                     '</div></div></div></div>';
-                    $('#' + subscription.folder).append(html);
+                  $('#' + subscription.folder).append(html);
                 })
               }
             })
