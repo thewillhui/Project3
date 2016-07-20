@@ -1,77 +1,91 @@
-$(document).ready(function () {
-  if (!$('body').hasClass('ajax')) { return false; }
+$(document).ready(function() {
+  if (!$('body').hasClass('ajax')) {
+    return false;
+  }
   var ajaxFeeds = {
 
     // get every entries of subscriptions
-    getFolders: function(){
+    getFolders: function() {
       $.ajax({
         url: '/subscriptions/folder',
         method: 'GET',
-        success: function(folders){
+        success: function(folders) {
           // create nav tabs
-          folders.forEach(function(folder){
-            if(folder){
-              navHtml = '<li role="presentation">'+
-                        '<a href="#'+folder+'" aria-controls="'+folder+'" role="tab" data-toggle="tab">' + folder +
-                      '</a></li>';
+          folders.forEach(function(folder) {
+            if (folder) {
+              navHtml = '<li role="presentation">' +
+                '<a class="folder-tab" href="#' + folder + '" aria-controls="' + folder + '" role="tab" data-toggle="tab">' + folder +
+                '</a></li>';
               $('.nav-tabs').append(navHtml);
-            // create tab panes
-              tabHtml = '<div role="tabpanel" class="tab-pane" id="' + folder +'">'+folder+'</div>';
+              // create tab panes
+              tabHtml = '<div role="tabpanel" class="tab-pane" id="' + folder + '">' + folder + '</div>';
               $('.tab-content').append(tabHtml);
             }
-
           })
           $('.nav-tabs').find('li').first().addClass('active');
           $('.tab-content').find('div').first().addClass('active');
+          $('.grid').on('click', '.folder-tab', function(){
+            isotopeGrid();
+          })
         }
       })
     },
-    getFeeds: function () {
+    getFeeds: function() {
       $.ajax({
         url: '/subscriptions',
         method: 'GET',
-        success: function(data){
-          data.subscriptions.forEach(function(subscription){
-            subscription.entries.forEach(function(entry){
-              var description = '<div>' + entry.summary + '</div>';
-              var imageUrl = $(description).find('img').attr('src');
-              if (imageUrl){
-            html = '<div class="grid-item entry-div">' +
-                  '<img src="' + imageUrl + '">' +
+        success: function(data) {
+          data.subscriptions.forEach(function(subscription) {
+              subscription.entries.forEach(function(entry) {
+                var description = '<div>' + entry.summary + '</div>';
+                var imageUrl = $(description).find('img').attr('src');
+                if (imageUrl) {
+                  html = '<div class="grid-item entry-div">' +
+                    '<img class="head-img" src="' + imageUrl + '">' +
                     '<div class="thumbnail">' +
-                      '<div class="caption">' +
-                        '<h4>' + entry.title + '</h4>' +
-                        '<p>' + entry.published + '</p>' +
-                      '</div></div></div>';
-          } else {
-            html = '<div class="grid-item entry-div">' + '<div class="thumbnail">' + '<div class="caption">' +
-                        '<h4>' + entry.title + '</h4>' +
-                        '<p>' + entry.published + '</p>' +
-                      '</div></div></div>';
-          }
-              if(subscription.folder){
-                $('#'+subscription.folder).append(html);
-              }
+                    '<div class="caption">' +
+                    '<h4>' + entry.title + '</h4>' +
+                    '<div class="description"><p>' + entry.summary + '</p>' + '<p>' + entry.published + '</p>' +
+                    '</div></div></div></div>';
+                } else {
+                  html = '<div class="grid-item entry-div">' + '<div class="thumbnail">' + '<div class="caption">' +
+                    '<h4>' + entry.title + '</h4>' + '<div class="description"><p>' + entry.summary + '</p>' + '<p>' + entry.published + '</p>' +
+                    '</div></div></div></div>';
+                }
+                if (subscription.folder) {
+                  $('#' + subscription.folder).append(html);
+                }
+                var youtube = $('iframe[src*="youtube.com"]')
+                youtube.addClass('col-xs-12');
+              })
             })
-          })
+            //hides description, opens on click and rearranges with isotope
+          $('.description').slideUp();
+          $('.entry-div').click(function() {
+              $(this).find(".head-img").toggle();
+              // $(this).toggleClass("gigante").find(".description").slideToggle("fast", function() {
+              //   $('.grid').isotope("layout")
+              // });
+            })
+            //arranges all entry-divs with isotope
           isotopeGrid();
         }
       })
     },
     // Half finished
-    getFeed: function (id, cb) {
+    getFeed: function(id, cb) {
       $.ajax({
         url: '/subscriptions/' + id,
         method: 'get',
-        success: function (src) {
+        success: function(src) {
           cb(src, "show");
         },
-        error: function (resp) {
+        error: function(resp) {
           console.log(resp);
         }
       });
     },
-    setFeed: function (src, mode) { // on show/edit
+    setFeed: function(src, mode) { // on show/edit
       ajaxPosts.hideAllInModal();
 
       var $modal = $('#src-modal');
@@ -87,9 +101,9 @@ $(document).ready(function () {
         $modal.modal('show');
       }
     },
-    bindShowClicks: function () {
+    bindShowClicks: function() {
       var that = this;
-      $('.toggle-modal').on('click', function (e) {
+      $('.toggle-modal').on('click', function(e) {
         e.preventDefault();
 
         var id = $(this).data('id');
@@ -97,7 +111,7 @@ $(document).ready(function () {
         that.getPost(id, that.setSource);
       });
     },
-    init: function () {
+    init: function() {
       this.getFolders();
       this.getFeeds();
     }
