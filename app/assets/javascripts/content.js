@@ -36,40 +36,35 @@ $(document).ready(function() {
       $.ajax({
         url: '/manage',
         method: 'GET',
-        success: function(data) {
-          data.subscriptions.forEach(function(subscription) {
-            subscription.entries.forEach(function(entry) {
-              var description = '<div>' + entry.summary + '</div>';
-              var imageUrl = $(description).find('img').attr('src');
-              if (imageUrl) {
-                html = '<div class="grid-item entry-div">' +
-                  '<img class="head-img" src=' + imageUrl + '>' +
-                  '<div class="thumbnail">' +
-                  '<div class="caption">' +
-                  '<h4>' + entry.title + '</h4>' +
-                  '<div class="description"><p>' + entry.summary + '</p>' + '<p>' + entry.published + '</p>' +
-                  '</div></div></div></div>';
-              } else {
-                html = '<div class="grid-item entry-div">' + '<div class="thumbnail">' + '<div class="caption">' +
-                  '<h4>' + entry.title + '</h4>' + '<div class="description"><p>' + entry.summary + '</p>' + '<p>' + entry.published + '</p>' +
-                  '</div></div></div></div>';
+        success: function(data){
+          feeds = [];
+          for (var key in data){
+            subscriptions.push({'url': data[key][0].url, 'folder': data[key][0].folder});
+          }
+          subscriptions.forEach(function(subscription){
+            feednami.load(subscription.url, function(result){
+              if(result.error){
+                console.log(result.error)
               }
-              if (subscription.folder) {
-                $('#' + subscription.folder).append(html);
+              else {
+                var entries = result.feed.entries;
+                entries.forEach(function(entry){
+                  feeds.push(entry);
+                  var description = '<div>' + entry.description + '</div>';
+                  var imageUrl = $(description).find('img').attr('src');
+                  html = '<div class="grid-item entry-div" data-toggle="modal" data-target="#feed_content">' +
+                    '<img class="head-img" src="' + imageUrl + '">' +
+                    '<div class="thumbnail">' +
+                    '<div class="caption">' +
+                    '<h4 class="title" data-entryid="'+entry.origlink+'">' + entry.title + '</h4>' +
+                     '<p>' + entry.date + '</p>' +
+                    '</div></div></div></div>';
+                    $('#' + subscription.folder).append(html);
+                })
               }
-              var youtube = $('iframe[src*="youtube.com"]')
-              youtube.addClass('col-xs-12');
             })
+
           })
-          //hides description, opens on click and rearranges with isotope
-          $('.description').slideUp();
-          $('.entry-div').click(function() {
-              $(this).find(".head-img").toggle();
-              // $(this).toggleClass("gigante").find(".description").slideToggle("fast", function() {
-              //   $('.grid').isotope("layout")
-              // });
-            })
-            //arranges all entry-divs with isotope
           isotopeGrid();
         }
       })
