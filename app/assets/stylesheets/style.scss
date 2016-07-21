@@ -124,15 +124,27 @@ p {
   display: block;
 }
 
-.entry-div img{
-  width: 100%;
-  height: auto;
+.grid-item{
+  .thumbnail {
+    background-color: #222;
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+  img{
+    width: 100%;
+    height: auto;
+  }
+  .fa {
+    color: white;
+    margin: 15px;
+  }
+  .fa:hover {
+    color: #FFD700;
+  }
+  margin: 10px;
 }
 
-.thumbnail {
-  background-color: #222;
-  border: none;
-}
 
 /* css for modals */
 .modal-content {
@@ -172,7 +184,10 @@ p {
     position: relative;
     display: inline-block;
   }
-
+  .modal-body img{
+    height: 100%;
+    width: 100%;
+  }
   .subscribe {
     cursor: pointer;
   }

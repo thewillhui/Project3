@@ -20,7 +20,6 @@ $(document).ready(function() {
           }
       })
     },
-
     getSubscriptions: function(){
       $.ajax({
         url: '/manage',
@@ -42,6 +41,7 @@ $(document).ready(function() {
                 entries.forEach(function(entry){
                   // console.log(entry);
                   feeds.push(entry);
+                  debugger
                   var description = '<div>' + entry.description + '</div>';
                   var imageUrl = $(description).find('img').attr('src');
                   if (imageUrl){
@@ -73,7 +73,6 @@ $(document).ready(function() {
         }
       })
     },
-
     setManageModal: function(){
       $.ajax({
         url: '/manage',
@@ -105,7 +104,6 @@ $(document).ready(function() {
         }
       })
     },
-
     getFeed: function(id, cb) {
       $.ajax({
         url: '/subscriptions/' + id,
@@ -176,7 +174,6 @@ $(document).ready(function() {
     bindManageModalClick: function(){
       $('#manage').on('click', this.setManageModal);
     },
-
     bindFeedModalClick: function(){
       $('.grid').on('click', '.grid-item', this.setFeedModal);
     },
