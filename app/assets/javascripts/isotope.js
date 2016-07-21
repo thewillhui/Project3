@@ -1,17 +1,5 @@
-// var isotopeGrid = function() {
-//   var $grid = $('.grid');
-//   $grid.imagesLoaded(function() {
-//     $grid.isotope({
-//       itemSelector: '.grid-item',
-//       layoutMode: 'packery',
-//       packery: {
-//         gutter: 10
-//       }
-//     });
-//   })
-// }
-$(document).ready(function() {
-  $grid = $('.grid');
+var createIsotope = function() {
+  var $grid = $('.grid');
   $grid.imagesLoaded(function() {
     $grid.isotope({
       itemSelector: '.grid-item',
@@ -21,6 +9,19 @@ $(document).ready(function() {
       }
     });
   })
+};
+
+var destroyIsotope = function () {
+  var $grid = $('.grid');
+  $grid.isotope('destroy');
+};
+
+var checkIsotopeInstance = function () {
+  var $grid = $('.grid');
+  return $grid.data('isotope');
+}
+
+$(document).ready(function() {
   $('#categories').on('click', 'li', function() {
     var filterValue = $(this).attr('data-filter');
     $('.grid').isotope({ filter: filterValue });
@@ -36,9 +37,6 @@ $(document).ready(function() {
     $('.modal-body').html(entry.description);
     $('.bookmark').attr('data-entry', entry.origlink);
   });
-
-
-
 
   console.log("loaded isotope.js")
 })
