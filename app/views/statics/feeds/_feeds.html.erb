@@ -18,14 +18,17 @@
   console.log('hello there');
 
     $('.grid').on('click', '.grid-item', function(){
+      // console.log(this);
       // console.log(feeds);
-      var origlink = $(this).find('.title').data('entryid');
+      var link = $(this).find('.title').data('entryid');
+      // console.log('origlink: ' + origlink);
       var entry = feeds.find(function(feed){
-        return feed.origlink == origlink;
+        return feed.link == link;
       })
-      $('.modal-header').text(entry.title);
-      $('.modal-body').html(entry.description);
-      $('.bookmark').attr('data-entry', entry.origlink);
+      // console.log('entry: ' + entry);
+      $('#feed_content').find('.modal-header').text(entry.title);
+      $('#feed_content').find('.modal-body').html(entry.description);
+      $('#feed_content').find('.bookmark').attr('data-entry', entry.link);
     });
 
   </script>

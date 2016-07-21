@@ -220,6 +220,24 @@ p {
   color: #999;
 }
 
+
 .head-img {
   width:100%;
 }
+
+ul {
+  list-style-type: none;
+}
+#subscriptionslist .folder_name {
+  border-left: solid;
+  margin-bottom: 20px;
+  padding-left: 20px;
+}
+#subscriptionslist img{
+  margin-right: 10px;
+}
+
+#subscriptionslist span{
+  float:right;
+}
+
