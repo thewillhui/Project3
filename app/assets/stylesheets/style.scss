@@ -24,7 +24,7 @@ h1, h2, h3, h4, h5, h6 {
   color: white;
 }
 
-p {
+p, .modal-body {
   font-family: 'Hind', sans-serif;
   color: white;
 }
@@ -161,6 +161,11 @@ ul {
 
 .modal-header, .modal-footer {
   border: none;
+}
+
+.fa-bookmark{
+  float: right;
+  color: $logo-green;
 }
 
 .modal-title {
