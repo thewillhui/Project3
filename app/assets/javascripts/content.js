@@ -8,26 +8,18 @@ $(document).ready(function() {
     // get every entries of subscriptions
     getFolders: function() {
       $.ajax({
-        url: '/subscriptions/folder',
-        method: 'GET',
-        success: function(folders) {
-          // create nav tabs
-          folders.forEach(function(folder) {
-            if (folder) {
-              navHtml = '<li role="presentation">' +
-                '<a class="folder-tab" href="#' + folder + '" aria-controls="' + folder + '" role="tab" data-toggle="tab">' + folder +
-                '</a></li>';
-              $('.nav-tabs').append(navHtml);
-              // create tab panes
-              tabHtml = '<div role="tabpanel" class="tab-pane" id="' + folder + '"></div>';
-              $('.tab-content').append(tabHtml);
-
-            }
-          })
-        }
+          url: '/subscriptions/folder',
+          method: 'GET',
+          success: function(folders) {
+            // create nav tabs
+            folders.forEach(function(folder) {
+              navHtml = '<li data-filter=\".' + folder + '\"><a href=\"#\">' + folder + '</a></li>'
+              $('#categories').append(navHtml);
+            })
+            $('#categories').find('li').first().addClass('active');
+          }
       })
     },
-
 
     getSubscriptions: function(){
       $.ajax({
@@ -40,9 +32,6 @@ $(document).ready(function() {
               subscriptions.push({'url': item.url, 'folder': item.folder});
             })
           })
-          // for (var key in data){
-          //   subscriptions.push({'url': data[key][0].url, 'folder': data[key][0].folder});
-          // }
           subscriptions.forEach(function(subscription){
             feednami.load(subscription.url, function(result){
               if(result.error){
@@ -51,19 +40,21 @@ $(document).ready(function() {
               else {
                 var entries = result.feed.entries;
                 entries.forEach(function(entry){
-                  console.log(entry);
+                  // console.log(entry);
                   feeds.push(entry);
                   var description = '<div>' + entry.description + '</div>';
                   var imageUrl = $(description).find('img').attr('src');
-                  html = '<div class="grid-item entry-div" data-toggle="modal" data-target="#feed_content">' +
+                  html = '<div class="grid-item entry-div ' + subscription.folder + '" data-toggle="modal" data-target="#feed_content">' +
                     '<img class="head-img" src="' + imageUrl + '">' +
                     '<div class="thumbnail">' +
                     '<div class="caption">' +
                     '<h4 class="title" data-entryid="'+entry.link+'">' + entry.title + '</h4>' +
                      '<p>' + entry.date + '</p>' +
                     '</div></div></div></div>';
-                    $('#' + subscription.folder).append(html);
+                    $('.grid').append(html);
                 })
+                if (checkIsotopeInstance()) { destroyIsotope(); }
+                createIsotope();
               }
             })
           })
@@ -120,11 +111,29 @@ $(document).ready(function() {
       }
     },
 
+    setFeedModal: function(){
+      var link = $(this).find('.title').data('entryid');
+      // console.log('origlink: ' + origlink);
+      var entry = feeds.find(function(feed){
+        return feed.link == link;
+      })
+      console.log(entry);
+      // console.log('entry: ' + entry);
+      $('#feed_content').find('.modal-header').text(entry.title);
+      $('#feed_content').find('.modal-body').html(entry.description);
+      $('#feed_content').find('.bookmark').attr('data-entry', entry.link);
+
+    },
+
     bindManageModalClick: function(){
       $('#manage').on('click', this.setManageModal);
     },
+    bindFeedModal: function(){
+      $('.grid').on('click', '.grid-item', this.setFeedModal);
+    },
 
     init: function() {
+      this.bindFeedModal();
       this.bindManageModalClick();
       this.getFolders();
       this.getSubscriptions();

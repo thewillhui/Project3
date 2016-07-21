@@ -27,16 +27,16 @@ $(document).ready(function() {
     $('.grid').isotope({ filter: filterValue });
   });
 
-  $('.grid').on('click', '.grid-item', function() {
-    // console.log(feeds);
-    var origlink = $(this).find('.title').data('entryid');
-    var entry = feeds.find(function(feed) {
-      return feed.origlink == origlink;
-    })
-    $('.modal-header').text(entry.title);
-    $('.modal-body').html(entry.description);
-    $('.bookmark').attr('data-entry', entry.origlink);
-  });
+  // $('.grid').on('click', '.grid-item', function() {
+  //   // console.log(feeds);
+  //   var origlink = $(this).find('.title').data('entryid');
+  //   var entry = feeds.find(function(feed) {
+  //     return feed.origlink == origlink;
+  //   })
+  //   $('.modal-header').text(entry.title);
+  //   $('.modal-body').html(entry.description);
+  //   $('.bookmark').attr('data-entry', entry.origlink);
+  // });
 
   console.log("loaded isotope.js")
 })
