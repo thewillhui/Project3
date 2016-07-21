@@ -33,6 +33,9 @@ ul {
   list-style-type: none;
 }
 
+a {
+  color: $logo-green;
+}
 
 .navbar-default {
   background-color: $dark-grey;
@@ -166,6 +169,10 @@ ul {
 .fa-bookmark{
   float: right;
   color: $logo-green;
+}
+
+.fa-bookmark:hover{
+  color: $lightest-grey;
 }
 
 .modal-title {
