@@ -26,33 +26,35 @@ $(document).ready(function() {
       url: '/manage',
       method: 'GET',
       success: function(data) {
-        feeds = [];
         for (var key in data) {
           subscriptions.push({ 'url': data[key][0].url, 'folder': data[key][0].folder });
         }
         subscriptions.forEach(function(subscription) {
           feednami.load(subscription.url, function(result) {
-            if (result.error) {
-              console.log(result.error)
-            } else {
-              var entries = result.feed.entries;
-              entries.forEach(function(entry) {
-                feeds.push(entry);
-                var description = '<div>' + entry.description + '</div>';
-                var imageUrl = $(description).find('img').attr('src');
-                html = '<div class="grid-item entry-div ' + subscription.folder + '\" data-toggle="modal" data-target="#feed_content">' +
-                  '<img class="head-img" src="' + imageUrl + '">' +
-                  '<div class="thumbnail">' +
+            if (result.error) { console.log(result.error); return false; }
+
+            var entries = result.feed.entries;
+
+            entries.forEach(function(entry) {
+              var description = '<div>' + entry.description + '</div>';
+              var imageUrl = $(description).find('img').attr('src');
+              html = '' +
+              '<div class="grid-item entry-div ' + subscription.folder + '\" data-toggle="modal" data-target="#feed_content">' +
+                '<img class="head-img" src="' + imageUrl + '">' +
+                '<div class="thumbnail">' +
                   '<div class="caption">' +
-                  '<h4 class="title" data-entryid="' + entry.origlink + '">' + entry.title + '</h4>' +
-                  '<p>' + entry.date + '</p>' +
-                  '</div></div></div></div>';
-                $('.grid').append(html).isotope('appended', html);
-              })
-            }
+                    '<h4 class="title" data-entryid="' + entry.origlink + '">' + entry.title + '</h4>' +
+                    '<p>' + entry.date + '</p>' +
+                  '</div>' +
+                '</div>' +
+              '</div>';
+
+              $('.grid').append(html);
+            });
+            if (checkIsotopeInstance()) { destroyIsotope(); }
+            createIsotope();
           })
         })
-
       }
     })
   },
