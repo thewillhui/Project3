@@ -44,13 +44,23 @@ $(document).ready(function() {
                   feeds.push(entry);
                   var description = '<div>' + entry.description + '</div>';
                   var imageUrl = $(description).find('img').attr('src');
-                  html = '<div class="grid-item entry-div ' + subscription.folder + '" data-toggle="modal" data-target="#feed_content">' +
-                    '<img class="head-img" src="' + imageUrl + '">' +
-                    '<div class="thumbnail">' +
-                    '<div class="caption">' +
-                    '<h4 class="title" data-entryid="'+entry.link+'">' + entry.title + '</h4>' +
-                     '<p>' + entry.date + '</p>' +
-                    '</div></div></div></div>';
+                  if (imageUrl){
+                    html = '<div class="grid-item entry-div ' + subscription.folder + '" data-toggle="modal" data-target="#feed_content">' +
+                      '<img class="head-img" src="' + imageUrl + '">' +
+                      '<div class="thumbnail">' +
+                      '<div class="caption">' +
+                      '<h4 class="title" data-entryid="'+entry.link+'">' + entry.title + '</h4>' +
+                       '<p>' + entry.date + '</p>' +
+                      '</div></div></div></div>';
+                  } else {
+                    html = '<div class="grid-item entry-div ' + subscription.folder + '" data-toggle="modal" data-target="#feed_content">' +
+                      '<div class="thumbnail">' +
+                      '<div class="caption">' +
+                      '<h4 class="title" data-entryid="'+entry.link+'">' + entry.title + '</h4>' +
+                       '<p>' + entry.date + '</p>' +
+                      '</div></div></div></div>';
+
+                  }
                     $('.grid').append(html);
                 })
                 if (checkIsotopeInstance()) { destroyIsotope(); }
