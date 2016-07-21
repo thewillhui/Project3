@@ -39,7 +39,7 @@ $(document).ready(function() {
                 entries.forEach(function(entry) {
                   var entryDate = entry.date
                   var itemDate = moment(entryDate).format("dddd, MMMM Do YYYY");
-                  // console.log(entry);
+                  var sortDate = moment(entryDate).format("X");
                   feeds.push(entry);
                   debugger
                   var description = '<div>' + entry.description + '</div>';
@@ -50,8 +50,8 @@ $(document).ready(function() {
                       '<img class="head-img" src="' + imageUrl + '">' +
                       '<div class="thumbnail">' +
                       '<div class="caption">' +
-                      '<h4 class="title" data-entryid="'+entry.link+'">' + entry.title + '</h4>' +
-                      '<p class="date">' + itemDate + '</p>' +
+                      '<h4 class="title" data-entryid="' + entry.link + '">' + entry.title + '</h4>' +
+                      '<p class="date" data-date=\"' + sortDate + '\">' + itemDate + '</p>' +
                       '</div>' +
                       '</div>' +
                       '</div>';
@@ -60,8 +60,8 @@ $(document).ready(function() {
                       '<div class="grid-item entry-div ' + subscription.folder + '\" data-toggle="modal" data-target="#feed_content">' +
                       '<div class="thumbnail">' +
                       '<div class="caption">' +
-                      '<h4 class="title" data-entryid="'+entry.link+'">' + entry.title + '</h4>' +
-                      '<p class="date">' + itemDate + '</p>' +
+                      '<h4 class="title" data-entryid="' + entry.link + '">' + entry.title + '</h4>' +
+                      '<p class="date" data-date=\"' + sortDate + '\">' + itemDate + '</p>' +
                       '</div>' +
                       '</div>' +
                       '</div>';
@@ -82,7 +82,7 @@ $(document).ready(function() {
       $.ajax({
         url: '/manage',
         method: 'GET',
-        success: function(data){
+        success: function(data) {
           $('.folder-ul').html('');
           listhtml = '';
           $.each(data, function(key, items){
@@ -93,7 +93,7 @@ $(document).ready(function() {
 
           })
           optionHtml = '<span>' +
-          '<div class="dropdown">' +
+            '<div class="dropdown">' +
             '<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Change folder' +
             '<span class="caret"></span></button>' +
             '<ul class="dropdown-menu">' +
@@ -103,8 +103,8 @@ $(document).ready(function() {
             '<li><a class="folder-dropdown" href="#">Sports</a></li>' +
             '<li><a class="folder-dropdown" href="#">Finance</a></li>' +
             '</ul>' +
-          '</div>' +
-          ' | <a class="delete" href="#">Delete</a></span>';
+            '</div>' +
+            ' | <a class="delete" href="#">Delete</a></span>';
           $('.sub').append(optionHtml);
         }
       })
@@ -138,7 +138,7 @@ $(document).ready(function() {
       }
     },
 
-    setFeedModal: function(){
+    setFeedModal: function() {
       var link = $(this).find('.title').data('entryid');
       // console.log('origlink: ' + origlink);
       var entry = feeds.find(function(feed) {
@@ -152,22 +152,22 @@ $(document).ready(function() {
 
     },
 
-    deleteFeed: function(id, cb){
+    deleteFeed: function(id, cb) {
       $.ajax({
         url: '/subscriptions/delete/' + id,
         method: 'DELETE',
-        success: function(resp){
+        success: function(resp) {
           console.log(resp);
           cb();
         }
       })
     },
-    editFeed: function(id, newFolder, cb){
+    editFeed: function(id, newFolder, cb) {
       $.ajax({
         url: '/edit/' + id,
         method: 'PUT',
-        data: {folder: newFolder},
-        success: function(resp){
+        data: { folder: newFolder },
+        success: function(resp) {
           console.log('edited');
           console.log(resp);
           cb();
@@ -175,23 +175,23 @@ $(document).ready(function() {
       })
     },
 
-    bindManageModalClick: function(){
+    bindManageModalClick: function() {
       $('#manage').on('click', this.setManageModal);
     },
     bindFeedModalClick: function(){
       $('.grid').on('click', '.grid-item', this.setFeedModal);
     },
-    bindFeedDeleteClick: function(){
+    bindFeedDeleteClick: function() {
       var that = this;
-      $('#subscriptionslist').on('click', '.delete', function(e){
+      $('#subscriptionslist').on('click', '.delete', function(e) {
         e.preventDefault();
         var id = $(this).parents('.sub').data('id');
         that.deleteFeed(id, that.setManageModal);
       });
     },
-    bindFeedEditClick: function(){
+    bindFeedEditClick: function() {
       var that = this;
-      $('#subscriptionslist').on('click', '.folder-dropdown', function(e){
+      $('#subscriptionslist').on('click', '.folder-dropdown', function(e) {
         e.preventDefault();
         newFolder = $(this).text();
         var id = $(this).parents('.sub').data('id');

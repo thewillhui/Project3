@@ -2,9 +2,6 @@
 isotope loads an instance when the page loads and binds itself to the .grid container. at this point the container is empty so the layout will not work. the instance must be destroyed first and reinitialised in content.js
 */
 
-
-
-
 var createIsotope = function() {
   var $grid = $('.grid');
   $grid.imagesLoaded(function() {
@@ -19,7 +16,11 @@ var createIsotope = function() {
       },
       packery: {
         gutter: 10
-      }
+      },
+      getSortData: {
+        date: '[data-date]'
+      },
+      sortBy: 'date'
     });
   })
 };
