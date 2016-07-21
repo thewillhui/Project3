@@ -150,13 +150,10 @@ $(document).ready(function() {
           listhtml = '';
           $.each(data, function(key, items){
             items.forEach(function(item){
-              listhtml = '<li class="sub" data-id="' + item.id + '"><img class="manage-logo-url" src="'+item.logoUrl+'">' + item.title + '</li>';
-              $('#'+key+'-manage-folder').append(listhtml);
-            })
-
-          })
-          optionHtml = '<span>' +
-            '<div class="dropdown">' +
+              listhtml = '<li class="sub" data-id="' + item.id + '">'+ '<div class="col-xs-12">' +'<div class="col-xs-6">' +
+              '<img src="'+item.logoUrl+'">' + item.title + '</div>' +
+              '<div class="subscription-btns col-xs-6">' +
+            '<div class="dropdown pull-right">' +
             '<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Change folder' +
             '<span class="caret"></span></button>' +
             '<ul class="dropdown-menu">' +
