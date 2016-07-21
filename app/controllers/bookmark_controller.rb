@@ -1,6 +1,7 @@
 class BookmarkController < ApplicationController
   def index
-    @bookmark = current_user.bookmark
+    @bookmarks = current_user.bookmarks
+    render json: @bookmarks
   end
 
   def create
@@ -26,7 +27,7 @@ class BookmarkController < ApplicationController
   end
 
   def destroy
-    if @bookmark.find_by_id(params[:id]).destroy
+    if Bookmark.all.find_by_id(params[:id]).destroy
       render json: {message: "success"}
     else
       render json: @destroy.errors.messages, status:400

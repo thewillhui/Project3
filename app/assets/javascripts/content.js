@@ -67,6 +67,7 @@ $(document).ready(function() {
                       '</div>' +
                       '</div>';
                   }
+                  console.log(feeds);
                   $('.grid').append(html);
                 })
                 var youtube = $('iframe[src*="youtube.com"]')
@@ -149,6 +150,7 @@ $(document).ready(function() {
       $('#feed_content').find('.modal-header').html('<h2>' + entry.title + '</h2>' + '<h5 class="date">' + itemDate + '</h5>');
       $('#feed_content').find('.modal-body').html('<p>' + entry.description + '</p>');
       $('#feed_content').find('.bookmark').attr('data-entry', entry.link);
+      $('#feed_content').find('.modal-header').append('<a href="#"><span class="fa fa-bookmark fa-2x" data-id="' + entry.link +'"></span></a>');
 
     },
 

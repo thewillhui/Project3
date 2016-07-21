@@ -20,6 +20,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li data-toggle='modal' data-target='#manage-modal'><a id="manage">Manage</a></li>
+            <li id="bookmark-menu-button" data-toggle='modal' data-target='#bookmark-modal'><a>Bookmark</a></li>
             <li><a id="search">Search feeds</a></li>
             <li><a href="#">Action</a></li>
             <li><a href="#">Another action</a></li>
@@ -54,5 +55,6 @@
 <%= render 'partials/login_modal' %>
 <%= render 'partials/search_modal' %>
 <%= render 'partials/feeds_modal' %>
+<%= render 'partials/bookmark_modal' %>
 
 
