@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   get '/search', to: 'statics#search' # delete whole mvc on production
   get '/feedlr/search', to: 'feedlr#search'
 
-
+  post '/bookmark', to: 'bookmark#create'
+  get '/bookmark', to: 'bookmark#index'
+  delete '/bookmark/:id', to: 'bookmark#destroy'
 
   get '/subscriptions', to: 'subscriptions#index'
   get '/subscriptions/folder', to: 'subscriptions#getFolders'

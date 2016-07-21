@@ -18,7 +18,6 @@ class SubscriptionsController < ApplicationController
           published: entry.published
         });
       end
-
       @subscriptions.push(subscription);
     end
   end

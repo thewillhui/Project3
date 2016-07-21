@@ -1,0 +1,58 @@
+<div class="feed-title">
+  <h1><%= current_user.name%>'s <span class="logo_spoon logo">spoon</span><span class="logo">feed</span></h1>
+</div>
+
+<!-- <div id='feed' class='grid row'> -->
+  <ul class="nav nav-tabs" role="tablist">
+  </ul>
+  <div class="tab-content grid"></div>
+
+ <div class="modal fade" id="feed_content" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary bookmark">Bookmark</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  console.log('hello there');
+
+    $('.grid').on('click', '.grid-item', function(){
+      // console.log(feeds);
+      var origlink = $(this).find('.title').data('entryid');
+      var entry = feeds.find(function(feed){
+        return feed.origlink == origlink;
+      })
+      $('#feed_content').find('.modal-header').text(entry.title);
+      $('#feed_content').find('.modal-body').html(entry.description);
+      $('#feed_content').find('.bookmark').attr('data-entry', entry.origlink);
+    });
+
+  </script>
+<!-- tab HTML, leave here for reference first -->
+<!-- <div> -->
+  <!-- Nav tabs -->
+<!--     <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+ -->
+  <!-- Tab panes -->
+<!--   <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="home">...</div>
+    <div role="tabpanel" class="tab-pane" id="profile">2</div>
+    <div role="tabpanel" class="tab-pane" id="messages">3</div>
+    <div role="tabpanel" class="tab-pane" id="settings">$</div>
+  </div>
+
+</div>
+ -->

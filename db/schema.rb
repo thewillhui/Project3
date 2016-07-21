@@ -19,10 +19,12 @@ ActiveRecord::Schema.define(version: 20160719050024) do
   create_table "bookmarks", force: :cascade do |t|
     t.string   "user_id"
     t.string   "title"
-    t.string   "url"
+    t.string   "web_url"
     t.string   "author"
-    t.string   "content"
+    t.text     "content"
     t.string   "published"
+    t.string   "thumbnail_url"
+    t.string   "entry_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
