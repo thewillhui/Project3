@@ -201,6 +201,7 @@ $(document).ready(function() {
       this.bindFeedDeleteClick();
       this.bindFeedModalClick();
       this.bindManageModalClick();
+
       this.getFolders();
       this.getSubscriptions();
       // this.getFeeds();
