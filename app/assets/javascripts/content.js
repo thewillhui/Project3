@@ -1,67 +1,72 @@
 $(document).ready(function() {
-    if (!$('body').hasClass('ajax')) {
-      return false;
-    }
-    var subscriptions = [];
-    var ajaxFeeds = {
+  if (!$('body').hasClass('ajax')) {
+    return false;
+  }
+  var subscriptions = [];
+  var ajaxFeeds = {
 
     // get every entries of subscriptions
     getFolders: function() {
       $.ajax({
-          url: '/subscriptions/folder',
-          method: 'GET',
-          success: function(folders) {
-            // create nav tabs
-            folders.forEach(function(folder) {
-              navHtml = '<li data-filter=\".' + folder + '\"><a href=\"#\">' + folder + '</a></li>'
-              $('#categories').append(navHtml);
-            })
-            $('#categories').find('li').first().addClass('active');
-          }
+        url: '/subscriptions/folder',
+        method: 'GET',
+        success: function(folders) {
+          // create nav tabs
+          folders.forEach(function(folder) {
+            navHtml = '<li class="filter" data-filter=\".' + folder + '\"><a href=\"#\">' + folder + '</a></li>'
+            $('#categories').append(navHtml);
+          })
+        }
       })
     },
     getSubscriptions: function(){
       $.ajax({
         url: '/manage',
         method: 'GET',
-        success: function(data){
+        success: function(data) {
           feeds = [];
-          $.each( data, function(key, items){
-            items.forEach(function(item){
-              subscriptions.push({'url': item.url, 'folder': item.folder});
+          $.each(data, function(key, items) {
+            items.forEach(function(item) {
+              subscriptions.push({ 'url': item.url, 'folder': item.folder });
             })
           })
-          subscriptions.forEach(function(subscription){
-            feednami.load(subscription.url, function(result){
-              if(result.error){
+          subscriptions.forEach(function(subscription) {
+            feednami.load(subscription.url, function(result) {
+              if (result.error) {
                 console.log(result.error)
-              }
-              else {
+              } else {
                 var entries = result.feed.entries;
-                entries.forEach(function(entry){
+                entries.forEach(function(entry) {
+                  var entryDate = entry.date
+                  var itemDate = moment(entryDate).format("dddd, MMMM Do YYYY");
                   // console.log(entry);
                   feeds.push(entry);
                   debugger
                   var description = '<div>' + entry.description + '</div>';
                   var imageUrl = $(description).find('img').attr('src');
-                  if (imageUrl){
-                    html = '<div class="grid-item entry-div ' + subscription.folder + '" data-toggle="modal" data-target="#feed_content">' +
+                  if (imageUrl) {
+                    html =
+                      '<div class="grid-item entry-div ' + subscription.folder + '\" data-toggle="modal" data-target="#feed_content">' +
                       '<img class="head-img" src="' + imageUrl + '">' +
                       '<div class="thumbnail">' +
                       '<div class="caption">' +
                       '<h4 class="title" data-entryid="'+entry.link+'">' + entry.title + '</h4>' +
-                       '<p>' + entry.date + '</p>' +
-                      '</div></div></div></div>';
+                      '<p class="date">' + itemDate + '</p>' +
+                      '</div>' +
+                      '</div>' +
+                      '</div>';
                   } else {
-                    html = '<div class="grid-item entry-div ' + subscription.folder + '" data-toggle="modal" data-target="#feed_content">' +
+                    html =
+                      '<div class="grid-item entry-div ' + subscription.folder + '\" data-toggle="modal" data-target="#feed_content">' +
                       '<div class="thumbnail">' +
                       '<div class="caption">' +
                       '<h4 class="title" data-entryid="'+entry.link+'">' + entry.title + '</h4>' +
-                       '<p>' + entry.date + '</p>' +
-                      '</div></div></div></div>';
-
+                      '<p class="date">' + itemDate + '</p>' +
+                      '</div>' +
+                      '</div>' +
+                      '</div>';
                   }
-                    $('.grid').append(html);
+                  $('.grid').append(html);
                 })
                 var youtube = $('iframe[src*="youtube.com"]')
                 youtube.addClass('col-xs-12');
@@ -133,17 +138,16 @@ $(document).ready(function() {
       }
     },
 
-
     setFeedModal: function(){
       var link = $(this).find('.title').data('entryid');
       // console.log('origlink: ' + origlink);
-      var entry = feeds.find(function(feed){
+      var entry = feeds.find(function(feed) {
         return feed.link == link;
       })
-      console.log(entry);
-      // console.log('entry: ' + entry);
-      $('#feed_content').find('.modal-header').text(entry.title);
-      $('#feed_content').find('.modal-body').html(entry.description);
+      var entryDate = entry.date
+      var itemDate = moment(entryDate).format("dddd, MMMM Do YYYY, hh:mm:ss ZZ [GMT]");
+      $('#feed_content').find('.modal-header').html('<h2>' + entry.title + '</h2>' + '<h5 class="date">' + itemDate + '</h5>');
+      $('#feed_content').find('.modal-body').html('<p>' + entry.description + '</p>');
       $('#feed_content').find('.bookmark').attr('data-entry', entry.link);
 
     },

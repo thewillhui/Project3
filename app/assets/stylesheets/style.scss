@@ -58,7 +58,7 @@ p {
   background-color: $logo-green;
 }
 
-#signup, #login, #search{
+.nav li{
   cursor:pointer;
 }
 
@@ -148,9 +148,27 @@ p {
 }
 
 /* css for modals */
+
+.modal-header, .modal-footer {
+  border: none;
+}
+
 .modal-content {
   background-color: #333;
   overflow: scroll;
+  padding: 15px 40px 0px 40px;
+
+  img {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 15px;
+  }
+
+  p {
+    line-height: 25px;
+    font-size: 1.2em;
+  }
+
   .source-container {
     padding: 5px;
   }
@@ -193,6 +211,18 @@ p {
     cursor: pointer;
   }
 }
+
+/* Manage subscriptions */
+
+.sub {
+
+  img {
+    width:10%;
+  }
+}
+
+
+
 /* styles for isotope grid */
 
 .grid {
@@ -212,7 +242,6 @@ p {
 .grid-item {
   float: left;
   width: $grid-item-width;
-  // height: $grid-item-height;
 }
 
 .grid-item:hover {
@@ -225,6 +254,7 @@ p {
 
 .date {
   color: $mid-grey;
+  font-size: 0.9em;
 }
 /* ======Isotope styles end========*/
 
