@@ -21,6 +21,7 @@
 //= require isotope/dist/isotope.pkgd.min
 //= require isotope-packery/packery-mode.pkgd.min
 //= require imagesloaded/imagesloaded.pkgd.min
+//= require moment/min/moment.min
 //= require_tree .
 
 $.auth.configure({

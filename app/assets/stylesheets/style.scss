@@ -5,6 +5,8 @@ $grey: #d0d3d2;
 $mid-grey: #a2a7a6;
 $dark-grey: #2b2b2b;
 $logo-green: #00ffcc;
+$grid-item-width: 23%;
+
 
 body {
   background-color: #333;
@@ -56,7 +58,7 @@ p {
   background-color: $logo-green;
 }
 
-#signup, #login, #search{
+.nav li{
   cursor:pointer;
 }
 
@@ -145,11 +147,28 @@ p {
   margin: 10px;
 }
 
-
 /* css for modals */
+
+.modal-header, .modal-footer {
+  border: none;
+}
+
 .modal-content {
   background-color: #333;
   overflow: scroll;
+  padding: 15px 40px 0px 40px;
+
+  img {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 15px;
+  }
+
+  p {
+    line-height: 25px;
+    font-size: 1.2em;
+  }
+
   .source-container {
     padding: 5px;
   }
@@ -192,7 +211,19 @@ p {
     cursor: pointer;
   }
 }
-/* styles for masonary grid */
+
+/* Manage subscriptions */
+
+.sub {
+
+  img {
+    width:10%;
+  }
+}
+
+
+
+/* styles for isotope grid */
 
 .grid {
   max-width: 100%;
@@ -209,23 +240,29 @@ p {
 /* ---- .grid-item ---- */
 
 .grid-item {
+  margin: 0;
   float: left;
-  width: 250px;
-  height: auto;
+  width: $grid-item-width;
+}
+
+.feed-name {
+  color: $green;
 }
 
 .grid-item:hover {
-  background: #8CF;
+  border: 1px white solid;
   cursor: pointer;
 }
 
-.grid-item--width2 { width: 300px; }
-.grid-item--height2 { height: 300px; }
-
-.gigante {
-  width: 80%;
-  z-index: 1;
+.gutter-size {
+  width: 4%;
 }
+
+.date {
+  color: $mid-grey;
+  font-size: 0.9em;
+}
+/* ======Isotope styles end========*/
 
 .panel-title a {
   color: white;
