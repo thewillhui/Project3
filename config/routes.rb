@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # get '/signup', to: 'auth#signup'
   # get '/login', to: 'auth#login'
   get '/secret', to: 'statics#secret'
-  get '/search', to: 'statics#search'
+  get '/search', to: 'statics#search' # delete whole mvc on production
   get '/feedlr/search', to: 'feedlr#search'
 
 
@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get '/subscriptions', to: 'subscriptions#index'
   get '/subscriptions/folder', to: 'subscriptions#getFolders'
   post '/subscriptions/add', to: 'subscriptions#add'
+  put '/subscriptions/folder/:id', to: 'subscriptions#addToFolder'
+  delete '/subscriptions/delete/:id', to: 'subscriptions#destroy'
   get '/getsubscriptions', to: 'subscriptions#getSubscriptions'
   get '/manage', to: 'subscriptions#manage'
 

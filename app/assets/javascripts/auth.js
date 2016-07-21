@@ -63,6 +63,7 @@ console.log("loaded")
         e.preventDefault();
 
         var params = {
+          name: $('#signup-modal #signup-form input[name="name"]').val(),
           email: $('#signup-modal #signup-form input[name="email"]').val(),
           password: $('#signup-modal #signup-form input[name="password"]').val(),
           password_confirmation: $('#signup-modal #signup-form input[name="password_confirmation"]').val()
