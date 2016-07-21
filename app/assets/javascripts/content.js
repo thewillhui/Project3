@@ -67,16 +67,29 @@ $(document).ready(function() {
         url: '/manage',
         method: 'GET',
         success: function(data){
-          $('#subscriptionslist').html('');
+          $('.folder-ul').html('');
+          listhtml = '';
           $.each(data, function(key, items){
-            html = '<li class="folder_name"><h3>' + key + '</h3><ul>';
+            debugger
             items.forEach(function(item){
-              html += '<li class="sub" data-id="' + item.id + '"><img src="'+item.logoUrl+'">' + item.title + '</li>';
+              listhtml = '<li class="sub" data-id="' + item.id + '"><img src="'+item.logoUrl+'">' + item.title + '</li>';
+              $('#'+key+'-manage-folder').append(listhtml);
             })
-            html += '</ul></li>';
-            $('#subscriptionslist').append(html);
+
           })
-          optionHtml = '<span>  <a href="#">Edit</a> | <a href="#">Delete</a></span>';
+          optionHtml = '<span>' +
+          '<div class="dropdown">' +
+            '<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Change folder' +
+            '<span class="caret"></span></button>' +
+            '<ul class="dropdown-menu">' +
+            '<li><a class="folder-dropdown" href="#">General</a></li>' +
+            '<li><a class="folder-dropdown" href="#">News</a></li>' +
+            '<li><a class="folder-dropdown" href="#">Technology</a></li>' +
+            '<li><a class="folder-dropdown" href="#">Sports</a></li>' +
+            '<li><a class="folder-dropdown" href="#">Finance</a></li>' +
+            '</ul>' +
+          '</div>' +
+          ' | <a class="delete" href="#">Delete</a></span>';
           $('.sub').append(optionHtml);
         }
       })
@@ -111,6 +124,7 @@ $(document).ready(function() {
       }
     },
 
+
     setFeedModal: function(){
       var link = $(this).find('.title').data('entryid');
       // console.log('origlink: ' + origlink);
@@ -125,15 +139,58 @@ $(document).ready(function() {
 
     },
 
+    deleteFeed: function(id, cb){
+      $.ajax({
+        url: '/subscriptions/delete/' + id,
+        method: 'DELETE',
+        success: function(resp){
+          console.log(resp);
+          cb();
+        }
+      })
+    },
+    editFeed: function(id, newFolder, cb){
+      $.ajax({
+        url: '/edit/' + id,
+        method: 'PUT',
+        data: {folder: newFolder},
+        success: function(resp){
+          console.log('edited');
+          console.log(resp);
+          cb();
+        }
+      })
+    },
+
     bindManageModalClick: function(){
       $('#manage').on('click', this.setManageModal);
     },
-    bindFeedModal: function(){
+    bindFeedModalClick: function(){
       $('.grid').on('click', '.grid-item', this.setFeedModal);
+    },
+    bindFeedDeleteClick: function(){
+      var that = this;
+      $('#subscriptionslist').on('click', '.delete', function(e){
+        e.preventDefault();
+        var id = $(this).parents('.sub').data('id');
+        that.deleteFeed(id, that.setManageModal);
+      });
+    },
+    bindFeedEditClick: function(){
+      var that = this;
+      $('#subscriptionslist').on('click', '.folder-dropdown', function(e){
+        e.preventDefault();
+        newFolder = $(this).text();
+        var id = $(this).parents('.sub').data('id');
+        that.editFeed(id, newFolder, that.setManageModal);
+      })
+
     },
 
     init: function() {
-      this.bindFeedModal();
+      this.bindFeedEditClick();
+      this.bindFeedDeleteClick();
+      this.bindFeedModalClick();
       this.bindManageModalClick();
       this.getFolders();
       this.getSubscriptions();

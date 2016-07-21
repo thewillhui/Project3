@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   post '/subscriptions/add', to: 'subscriptions#add'
   put '/subscriptions/folder/:id', to: 'subscriptions#addToFolder'
   delete '/subscriptions/delete/:id', to: 'subscriptions#destroy'
+  put '/edit/:id', to: 'subscriptions#edit'
   get '/getsubscriptions', to: 'subscriptions#getSubscriptions'
   get '/manage', to: 'subscriptions#manage'
 

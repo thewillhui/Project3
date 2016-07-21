@@ -61,6 +61,13 @@ class SubscriptionsController < ApplicationController
     render json: @feed
   end
 
+  def edit
+    subscription = Subscription.find(params[:id])
+    @newFolder = params[:folder]
+    subscription.update_attributes(folder: params[:folder])
+    render json: subscription
+  end
+
   def destroy
     user_subscription = Subscription.find(params[:id])
     destroyed = user_subscription.destroy
