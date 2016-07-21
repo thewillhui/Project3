@@ -40,8 +40,13 @@ console.log("loaded")
       })
     },
     init: function () {
-      // on clicking search submit
-      $('#result').on('click', '.subscribe', search.subscribe)
+      $('#searchbox').on('keydown', function(e){
+        if (e.which ==13){
+          e.preventDefault();
+          search.searchFeed();
+        }
+      });
+      $('#result').on('click', '.subscribe', search.subscribe);
       $('#search-btn').on('click', search.searchFeed);
     }
   };
