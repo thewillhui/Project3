@@ -167,8 +167,11 @@ $(document).ready(function() {
             '<li><a class="folder-dropdown" href="#">Finance</a></li>' +
             '</ul>' +
             '</div>' +
-            ' | <a class="delete" href="#">Delete</a></span>';
-          $('.sub').append(optionHtml);
+            '<button class="btn btn-danger delete">Delete</button>' +
+            '</div></div></li>';
+              $('#'+key+'-manage-folder').append(listhtml);
+            })
+          })
         }
       })
     },
