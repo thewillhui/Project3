@@ -9,12 +9,8 @@ $(document).ready(function(){
           console.log(data);
           $('.panel-group').html('');
           data.forEach(function(bookmark){
-            // bookmark.title
-            // bookmark.link
-            // bookmark.content
-            // bookmark.author
-            // bookmark.date
-            bookmarkhtml = '<div class="panel panel-default"><div class="panel-heading" role="tab" id="heading' + bookmark.id +'"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse' + bookmark.id +'" aria-expanded="false" aria-controls="collapse' + bookmark.id +'">' + bookmark.title +
+
+            bookmarkhtml = '<div class="panel"><div class="panel-heading" role="tab" id="heading' + bookmark.id +'"><h4 class="panel-title"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse' + bookmark.id +'" aria-expanded="false" aria-controls="collapse' + bookmark.id +'">' + bookmark.title +
               '</a></h4></div>' +
               '<div id="collapse' + bookmark.id +'" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading' + bookmark.id +'"><div class="panel-body">' +
               '<a href="#"><p class="bookmark-delete fa fa-trash-o fa-1x" data-id="' + bookmark.id +'"></p></a>' +

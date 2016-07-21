@@ -203,10 +203,12 @@ p {
     position: relative;
     display: inline-block;
   }
+
   .modal-body img{
-    height: 100%;
+    height: auto;
     width: 100%;
   }
+
   .subscribe {
     cursor: pointer;
   }
@@ -293,3 +295,12 @@ ul {
   float:right;
 }
 
+.panel {
+  border: none;
+}
+.panel-heading {
+  background-color: $dark-grey;
+}
+.panel-body{
+  background-color: #333;
+}

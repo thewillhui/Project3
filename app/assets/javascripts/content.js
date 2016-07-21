@@ -19,11 +19,12 @@ $(document).ready(function() {
         }
       })
     },
-    getSubscriptions: function(){
+    refreshSubscriptions: function(){
       $.ajax({
         url: '/manage',
         method: 'GET',
         success: function(data) {
+          $('.grid').html('');
           feeds = [];
           $.each(data, function(key, items) {
             items.forEach(function(item) {
@@ -67,7 +68,68 @@ $(document).ready(function() {
                       '</div>' +
                       '</div>';
                   }
-                  console.log(feeds);
+                  $('.grid').append(html);
+                })
+                var youtube = $('iframe[src*="youtube.com"]')
+                youtube.addClass('col-xs-12');
+                // updateIsotope();
+              }
+            })
+          })
+        }
+      })
+
+    },
+    getSubscriptions: function(){
+      createIsotope();
+      $.ajax({
+        url: '/manage',
+        method: 'GET',
+        success: function(data) {
+          $('.grid').html('');
+          feeds = [];
+          $.each(data, function(key, items) {
+            items.forEach(function(item) {
+              subscriptions.push({ 'url': item.url, 'folder': item.folder, 'title': item.title });
+            })
+          })
+          subscriptions.forEach(function(subscription) {
+            feednami.load(subscription.url, function(result) {
+              if (result.error) {
+                console.log(result.error)
+              } else {
+                var entries = result.feed.entries;
+                entries.forEach(function(entry) {
+                  var entryDate = entry.date
+                  var itemDate = moment(entryDate).format("dddd, MMMM Do YYYY");
+                  var sortDate = moment(entryDate).format("X");
+                  feeds.push(entry);
+                  var description = '<div>' + entry.description + '</div>';
+                  var imageUrl = $(description).find('img').attr('src');
+                  if (imageUrl) {
+                    html =
+                      '<div class="grid-item entry-div ' + subscription.folder + '\" data-toggle="modal" data-target="#feed_content">' +
+                      '<img class="head-img" src="' + imageUrl + '">' +
+                      '<div class="thumbnail">' +
+                      '<div class="caption">' +
+                      '<h4 class="title" data-entryid="' + entry.link + '">' + entry.title + '</h4>' +
+                      '<p class="date" data-date=\"' + sortDate + '\">' + itemDate + '</p>' +
+                      '<p class="feed-name">' + subscription.title + '</p>' +
+                      '</div>' +
+                      '</div>' +
+                      '</div>';
+                  } else {
+                    html =
+                      '<div class="grid-item entry-div ' + subscription.folder + '\" data-toggle="modal" data-target="#feed_content">' +
+                      '<div class="thumbnail">' +
+                      '<div class="caption">' +
+                      '<h4 class="title" data-entryid="' + entry.link + '">' + entry.title + '</h4>' +
+                      '<p class="date" data-date="' + sortDate + '">' + itemDate + '</p>' +
+                      '<p class="feed-name">' + subscription.title + '</p>' +
+                      '</div>' +
+                      '</div>' +
+                      '</div>';
+                  }
                   $('.grid').append(html);
                 })
                 var youtube = $('iframe[src*="youtube.com"]')
@@ -88,7 +150,7 @@ $(document).ready(function() {
           listhtml = '';
           $.each(data, function(key, items){
             items.forEach(function(item){
-              listhtml = '<li class="sub" data-id="' + item.id + '"><img src="'+item.logoUrl+'">' + item.title + '</li>';
+              listhtml = '<li class="sub" data-id="' + item.id + '"><img class="manage-logo-url" src="'+item.logoUrl+'">' + item.title + '</li>';
               $('#'+key+'-manage-folder').append(listhtml);
             })
 
@@ -191,6 +253,15 @@ $(document).ready(function() {
         that.deleteFeed(id, that.setManageModal);
       });
     },
+    bindRefreshClick: function(){
+      var that = this;
+      $('#refresh').on('click', function(){
+        $('.grid').html('');
+        $('.grid').isotope('destroy')
+        // $('#products').isotope( 'reloadItems' ).isotope();
+        that.getSubscriptions();
+      })
+    },
     bindFeedEditClick: function() {
       var that = this;
       $('#subscriptionslist').on('click', '.folder-dropdown', function(e) {
@@ -207,7 +278,7 @@ $(document).ready(function() {
       this.bindFeedDeleteClick();
       this.bindFeedModalClick();
       this.bindManageModalClick();
-
+      // this.bindRefreshClick();
       this.getFolders();
       this.getSubscriptions();
       // this.getFeeds();

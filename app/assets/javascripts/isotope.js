@@ -36,7 +36,7 @@ var updateIsotope = function() {
 }
 
 $(document).ready(function() {
-  createIsotope();
+
 
   $('#categories').on('click', 'li.filter', function() {
     var filterValue = $(this).attr('data-filter');
