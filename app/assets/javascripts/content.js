@@ -210,6 +210,6 @@ $(document).ready(function() {
       this.getSubscriptions();
       // this.getFeeds();
     }
-  }
+  };
   ajaxFeeds.init();
 })
