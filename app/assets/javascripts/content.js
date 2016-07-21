@@ -150,13 +150,10 @@ $(document).ready(function() {
           listhtml = '';
           $.each(data, function(key, items){
             items.forEach(function(item){
-              listhtml = '<li class="sub" data-id="' + item.id + '"><img class="manage-logo-url" src="'+item.logoUrl+'">' + item.title + '</li>';
-              $('#'+key+'-manage-folder').append(listhtml);
-            })
-
-          })
-          optionHtml = '<span>' +
-            '<div class="dropdown">' +
+              listhtml = '<li class="sub" data-id="' + item.id + '">'+ '<div class="col-xs-12">' +'<div class="col-xs-6">' +
+              '<img src="'+item.logoUrl+'">' + item.title + '</div>' +
+              '<div class="subscription-btns col-xs-6">' +
+            '<div class="dropdown pull-right">' +
             '<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Change folder' +
             '<span class="caret"></span></button>' +
             '<ul class="dropdown-menu">' +
@@ -167,8 +164,11 @@ $(document).ready(function() {
             '<li><a class="folder-dropdown" href="#">Finance</a></li>' +
             '</ul>' +
             '</div>' +
-            ' | <a class="delete" href="#">Delete</a></span>';
-          $('.sub').append(optionHtml);
+            '<button class="btn btn-danger delete">Delete</button>' +
+            '</div></div></li>';
+              $('#'+key+'-manage-folder').append(listhtml);
+            })
+          })
         }
       })
     },
@@ -212,7 +212,7 @@ $(document).ready(function() {
       $('#feed_content').find('.modal-header').html('<h2>' + entry.title + '</h2>' + '<h5 class="date">' + itemDate + '</h5>');
       $('#feed_content').find('.modal-body').html('<p>' + entry.description + '</p>');
       $('#feed_content').find('.bookmark').attr('data-entry', entry.link);
-      $('#feed_content').find('.modal-header').append('<a href="#"><span class="fa fa-bookmark fa-2x" data-id="' + entry.link +'"></span></a>');
+      $('#feed_content').find('.modal-header').prepend('<a href="#"><span class="fa fa-bookmark fa-2x" data-id="' + entry.link +'"></span></a>');
 
     },
 

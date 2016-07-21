@@ -6,6 +6,7 @@ $mid-grey: #a2a7a6;
 $dark-grey: #2b2b2b;
 $logo-green: #00ffcc;
 $grid-item-width: 23%;
+$grid-item-width-2: 40%;
 
 
 body {
@@ -23,9 +24,17 @@ h1, h2, h3, h4, h5, h6 {
   color: white;
 }
 
-p {
+p, .modal-body {
   font-family: 'Hind', sans-serif;
   color: white;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  color: $logo-green;
 }
 
 .navbar-default {
@@ -133,6 +142,10 @@ p {
     margin: 0;
     padding: 0;
   }
+  .thumbnail:hover{
+    background-color: $logo-green;
+  }
+
   img{
     width: 100%;
     height: auto;
@@ -153,9 +166,22 @@ p {
   border: none;
 }
 
+.fa-bookmark{
+  float: right;
+  color: $logo-green;
+}
+
+.fa-bookmark:hover{
+  color: $lightest-grey;
+}
+
+.modal-title {
+  color: $logo-green;
+}
+
 .modal-content {
   background-color: #333;
-  overflow: scroll;
+  overflow: auto;
   padding: 15px 40px 0px 40px;
 
   img {
@@ -177,9 +203,6 @@ p {
   }
   .form-group {
     margin: 20px 5px;
-  }
-  .btn {
-    margin: 10px;
   }
   .title-template {
     background-color: #afafaf;
@@ -209,6 +232,10 @@ p {
     width: 100%;
   }
 
+  .modal-body ul{
+    padding: 0px;
+  }
+
   .subscribe {
     cursor: pointer;
   }
@@ -216,14 +243,13 @@ p {
 
 /* Manage subscriptions */
 
-.sub {
-
-  img {
+.folder-ul>.sub img{
     width:10%;
-  }
 }
 
-
+#subscriptionslist img{
+  margin-right: 10px;
+}
 
 /* styles for isotope grid */
 
@@ -247,12 +273,15 @@ p {
   width: $grid-item-width;
 }
 
+.grid-item-2 {
+  width: $grid-item-width-2;
+}
+
 .feed-name {
   color: $green;
 }
 
 .grid-item:hover {
-  border: 1px white solid;
   cursor: pointer;
 }
 
@@ -279,21 +308,8 @@ p {
   width:100%;
 }
 
-ul {
-  list-style-type: none;
-}
-#subscriptionslist .folder_name {
-  border-left: solid;
-  margin-bottom: 20px;
-  padding-left: 20px;
-}
-#subscriptionslist img{
-  margin-right: 10px;
-}
 
-#subscriptionslist span{
-  float:right;
-}
+
 
 .panel {
   border: none;

@@ -18,7 +18,7 @@ var createIsotope = function() {
         gutter: 10
       },
       getSortData: {
-        date: function (elem) {
+        date: function(elem) {
           var date = $(elem).find('[data-date]').data('date');
           return date
         }
@@ -27,7 +27,9 @@ var createIsotope = function() {
       sortAscending: false
     });
   })
+
 };
+
 
 var updateIsotope = function() {
   var $grid = $('.grid');
