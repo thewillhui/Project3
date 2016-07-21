@@ -240,11 +240,17 @@ p {
 /* ---- .grid-item ---- */
 
 .grid-item {
+  margin: 0;
   float: left;
   width: $grid-item-width;
 }
 
+.feed-name {
+  color: $green;
+}
+
 .grid-item:hover {
+  border: 1px white solid;
   cursor: pointer;
 }
 

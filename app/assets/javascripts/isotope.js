@@ -18,24 +18,26 @@ var createIsotope = function() {
         gutter: 10
       },
       getSortData: {
-        date: '[data-date]'
+        date: function (elem) {
+          var date = $(elem).find('[data-date]').data('date');
+          return date
+        }
       },
-      sortBy: 'date'
+      sortBy: 'date',
+      sortAscending: false
     });
   })
 };
 
-var destroyIsotope = function() {
+var updateIsotope = function() {
   var $grid = $('.grid');
-  $grid.isotope('destroy');
-};
-
-var checkIsotopeInstance = function() {
-  var $grid = $('.grid');
-  return $grid.data('isotope');
+  $grid.isotope('reloadItems');
+  $grid.isotope();
 }
 
 $(document).ready(function() {
+  createIsotope();
+
   $('#categories').on('click', 'li.filter', function() {
     var filterValue = $(this).attr('data-filter');
     $('.grid').isotope({ filter: filterValue });

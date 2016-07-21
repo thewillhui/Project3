@@ -27,7 +27,7 @@ $(document).ready(function() {
           feeds = [];
           $.each(data, function(key, items) {
             items.forEach(function(item) {
-              subscriptions.push({ 'url': item.url, 'folder': item.folder });
+              subscriptions.push({ 'url': item.url, 'folder': item.folder, 'title': item.title });
             })
           })
           subscriptions.forEach(function(subscription) {
@@ -41,7 +41,6 @@ $(document).ready(function() {
                   var itemDate = moment(entryDate).format("dddd, MMMM Do YYYY");
                   var sortDate = moment(entryDate).format("X");
                   feeds.push(entry);
-                  debugger
                   var description = '<div>' + entry.description + '</div>';
                   var imageUrl = $(description).find('img').attr('src');
                   if (imageUrl) {
@@ -52,6 +51,7 @@ $(document).ready(function() {
                       '<div class="caption">' +
                       '<h4 class="title" data-entryid="' + entry.link + '">' + entry.title + '</h4>' +
                       '<p class="date" data-date=\"' + sortDate + '\">' + itemDate + '</p>' +
+                      '<p class="feed-name">' + subscription.title + '</p>' +
                       '</div>' +
                       '</div>' +
                       '</div>';
@@ -61,7 +61,8 @@ $(document).ready(function() {
                       '<div class="thumbnail">' +
                       '<div class="caption">' +
                       '<h4 class="title" data-entryid="' + entry.link + '">' + entry.title + '</h4>' +
-                      '<p class="date" data-date=\"' + sortDate + '\">' + itemDate + '</p>' +
+                      '<p class="date" data-date="' + sortDate + '">' + itemDate + '</p>' +
+                      '<p class="feed-name">' + subscription.title + '</p>' +
                       '</div>' +
                       '</div>' +
                       '</div>';
@@ -70,8 +71,7 @@ $(document).ready(function() {
                 })
                 var youtube = $('iframe[src*="youtube.com"]')
                 youtube.addClass('col-xs-12');
-                if (checkIsotopeInstance()) { destroyIsotope(); }
-                createIsotope();
+                updateIsotope();
               }
             })
           })
