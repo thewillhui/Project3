@@ -17,7 +17,8 @@ console.log("loaded")
         url: '/subscriptions/add',
         data: params,
         success: function(data) {
-          console.log(data);
+          console.log('succeed');
+          // console.log(data);
         }
       })
     },
@@ -36,7 +37,7 @@ console.log("loaded")
 
             $('#result').append(html).css({width: '100%', height: '100%', display: 'block'});
           })
-          isotopeGrid();
+          // isotopeGrid();
         }
       })
     },

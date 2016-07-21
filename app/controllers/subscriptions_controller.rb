@@ -34,11 +34,15 @@ class SubscriptionsController < ApplicationController
   end
 
   def add
-    subscription = current_user.subscriptions.new(subscription_params)
-    if !current_user.subscriptions.exists?(title: params[:subscription][:title]) && subscription.save
-      render json: subscription
-    else
-      render json: subscription.errors.messages, status: 400
+    if !current_user.subscriptions.exists?(title: params[:subscription][:title])
+      subscription = Subscription.new(subscription_params)
+      subscription.update_attributes(user_id: current_user.id)
+      # subscription = current_user.subscriptions.new(subscription_params)
+      if subscription.save
+        render json: subscription
+      else
+        render json: subscription.errors.messages, status: 400
+      end
     end
   end
 

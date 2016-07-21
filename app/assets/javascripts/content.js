@@ -63,6 +63,8 @@ $(document).ready(function() {
                   }
                     $('.grid').append(html);
                 })
+                var youtube = $('iframe[src*="youtube.com"]')
+                youtube.addClass('col-xs-12');
                 if (checkIsotopeInstance()) { destroyIsotope(); }
                 createIsotope();
               }
@@ -80,7 +82,6 @@ $(document).ready(function() {
           $('.folder-ul').html('');
           listhtml = '';
           $.each(data, function(key, items){
-            debugger
             items.forEach(function(item){
               listhtml = '<li class="sub" data-id="' + item.id + '"><img src="'+item.logoUrl+'">' + item.title + '</li>';
               $('#'+key+'-manage-folder').append(listhtml);
@@ -175,6 +176,7 @@ $(document).ready(function() {
     bindManageModalClick: function(){
       $('#manage').on('click', this.setManageModal);
     },
+
     bindFeedModalClick: function(){
       $('.grid').on('click', '.grid-item', this.setFeedModal);
     },
@@ -206,6 +208,6 @@ $(document).ready(function() {
       this.getSubscriptions();
       // this.getFeeds();
     }
-  };
+  }
   ajaxFeeds.init();
 })
