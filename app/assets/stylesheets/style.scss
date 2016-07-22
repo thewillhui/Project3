@@ -95,21 +95,21 @@ a {
 .fb-login-btn, .fb-signup-btn {
   width: 100px;
   height: 42px;
-  background-image: url("/assets/fb_login.png");
+  background-image: image-url("fb_login.png");
   display: inline-block;
 }
 
 .fb-login-btn:hover, .fb-signup-btn:hover {
-  background-image: url("/assets/fb_login_hover.png");
+  background-image: image-url("fb_login_hover.png");
   cursor: pointer;
 }
 
 .fb-signup-btn {
-  background-image: url("/assets/fb_signup.png");
+  background-image: image-url("fb_signup.png");
 }
 
 .fb-signup-btn:hover {
-  background-image: url("/assets/fb_signup_hover.png");
+  background-image: image-url("fb_signup_hover.png");
 }
 
 .btn-signup, .btn-login, .btn-sp, .btn-search, .btn-source {
@@ -234,9 +234,9 @@ a {
   hr {
     border-color: #333333;
   }
-  #bookmark-noty, #search-noty, #manage-noty {
-    margin-top: 10px;
-    margin-bottom: 50px;
+  .noty-line{
+    margin-top: 0px;
+    margin-bottom: 20px;
   }
 
   h5 {
