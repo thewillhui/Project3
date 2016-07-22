@@ -114,7 +114,7 @@ $(document).ready(function() {
                       '<div class="caption">' +
                       '<h4 class="title" data-entryid="' + entry.link + '">' + entry.title + '</h4>' +
                       '<p class="date" data-date=\"' + sortDate + '\">' + itemDate + '</p>' +
-                      '<p class="feed-name">' + subscription.title + '</p>' +
+                      '<p class="feed-name">' + subscription.title + '</p>' + '<p class="folder-name">' + subscription.folder + '</p>' +
                       '</div>' +
                       '</div>' +
                       '</div>';
@@ -126,6 +126,7 @@ $(document).ready(function() {
                       '<h4 class="title" data-entryid="' + entry.link + '">' + entry.title + '</h4>' +
                       '<p class="date" data-date="' + sortDate + '">' + itemDate + '</p>' +
                       '<p class="feed-name">' + subscription.title + '</p>' +
+                      '<p class="folder-name">' + subscription.folder + '</p>' +
                       '</div>' +
                       '</div>' +
                       '</div>';
@@ -154,14 +155,14 @@ $(document).ready(function() {
               '<img src="'+item.logoUrl+'">' + item.title + '</div>' +
               '<div class="subscription-btns col-xs-6">' +
             '<div class="dropdown pull-right">' +
-            '<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Change folder' +
+            '<button class="btn btn-drop dropdown-toggle" type="button" data-toggle="dropdown">Change folder ' +
             '<span class="caret"></span></button>' +
             '<ul class="dropdown-menu">' +
             '<li><a class="folder-dropdown" href="#">General</a></li>' +
             '<li><a class="folder-dropdown" href="#">News</a></li>' +
             '<li><a class="folder-dropdown" href="#">Technology</a></li>' +
-            '<li><a class="folder-dropdown" href="#">Sports</a></li>' +
-            '<li><a class="folder-dropdown" href="#">Finance</a></li>' +
+            '<li><a class="folder-dropdown" href="#">Photography</a></li>' +
+            '<li><a class="folder-dropdown" href="#">Food</a></li>' +
             '</ul>' +
             '</div>' +
             '<button class="btn btn-danger delete">Delete</button>' +

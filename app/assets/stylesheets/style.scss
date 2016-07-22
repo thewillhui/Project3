@@ -112,11 +112,14 @@ a {
   background-image: url("/assets/fb_signup_hover.png");
 }
 
-.btn-signup, .btn-login, .btn-sp, .btn-search, .btn-source {
+.btn-signup, .btn-login, .btn-sp, .btn-search, .btn-source, .btn-feed {
   height: 42px;
-  background-color: #0dc5a1;
+  background-color: $green;
 }
 
+.btn-drop {
+  background-color: $green;
+}
 
 /*css for feed content*/
 #feed {
@@ -144,6 +147,10 @@ a {
   }
   .thumbnail:hover{
     background-color: $logo-green;
+  }
+
+  .folder-name {
+    color: $orange;
   }
 
   img{
@@ -177,12 +184,13 @@ a {
 
 .modal-title {
   color: $logo-green;
+  margin-bottom: 10px;
 }
 
 .modal-content {
   background-color: #333;
   overflow: auto;
-  padding: 15px 40px 0px 40px;
+  padding: 15px 40px 15px 40px;
 
   img {
     width: 100%;
@@ -284,6 +292,7 @@ a {
 
 .feed-name {
   color: $green;
+  font-size: 1.1em;
 }
 
 .grid-item:hover {
@@ -312,9 +321,6 @@ a {
 .head-img {
   width:100%;
 }
-
-
-
 
 .panel {
   border: none;
