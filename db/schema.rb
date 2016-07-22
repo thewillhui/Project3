@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160720033416) do
+ActiveRecord::Schema.define(version: 20160721082723) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,10 +19,10 @@ ActiveRecord::Schema.define(version: 20160720033416) do
   create_table "bookmarks", force: :cascade do |t|
     t.string   "user_id"
     t.string   "title"
-    t.string   "web_url"
+    t.string   "link"
     t.string   "author"
     t.text     "content"
-    t.string   "published"
+    t.string   "date"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.string   "thumbnail_url"

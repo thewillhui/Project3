@@ -69,9 +69,9 @@ $(document).ready(function(){
         var params = {
           bookmark: {
             title: entry.title,
-            web_url: entry.link,
+            link: entry.link,
             content: entry.description,
-            published: entry.date
+            date: entry.date
           }
         }
         console.log(params);

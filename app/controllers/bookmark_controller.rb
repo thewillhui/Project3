@@ -6,7 +6,8 @@ class BookmarkController < ApplicationController
   end
 
   def create
-    if @bookmark.nil?
+    # if @bookmark.exist?(link: params[:bookmark][:link])
+    if !current_user.bookmarks.exists?(:link => params[:bookmark][:link])
       @bookmark = current_user.bookmarks.create(bookmark_params)
       if @bookmark.save
         render json: @bookmark
@@ -14,7 +15,8 @@ class BookmarkController < ApplicationController
         render json: @bookmark.errors.messages, status: 400
       end
     else
-      @bookmark.destroy
+      current_user.bookmarks.find_by(link: params[:bookmark][:link]).destroy
+      # bookmark.destroy
 
       render json: {destroyed: true}
     end
@@ -34,11 +36,11 @@ class BookmarkController < ApplicationController
 
 private
   def find_bookmark
-    @bookmark = current_user.bookmarks.find_by(web_url: params[:bookmark][:web_url])
+    @bookmark = current_user.bookmarks.find_by(link: params[:bookmark][:link])
   end
 
   def bookmark_params
-    params.require(:bookmark).permit(:title, :web_url, :content, :published, :thumbnail_url)
+    params.require(:bookmark).permit(:title, :link, :content, :date, :thumbnail_url)
   end
 
 end
