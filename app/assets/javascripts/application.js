@@ -24,14 +24,3 @@
 //= require moment/min/moment.min
 //= require noty/js/noty/packaged/jquery.noty.packaged.min.js
 //= require_tree .
-
-$.auth.configure({
-  // By default, you only need to configure apiUrl
-  // Note that if you put a '/' at the end of the link, there will be errors when calling the api
-  apiUrl: location.origin,
-}).then(function(resp){
-  console.log("loggedin");
-}).fail(function(resp){
-  console.log("not loggedin");
-})
-$.noty.defaults.killer = true;

@@ -26,20 +26,10 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'nokogiri'
 
-gem 'rails_12factor', group: :production
 gem 'aws-sdk-v1'
 gem 'aws-sdk', '~> 2'
 
 gem 'rack-cors', :require => 'rack/cors'
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
 
 gem 'feedlr'
 
