@@ -19,69 +19,8 @@ $(document).ready(function() {
         }
       })
     },
-    refreshSubscriptions: function(){
-      $.ajax({
-        url: '/manage',
-        method: 'GET',
-        success: function(data) {
-          $('.grid').html('');
-          feeds = [];
-          $.each(data, function(key, items) {
-            items.forEach(function(item) {
-              subscriptions.push({ 'url': item.url, 'folder': item.folder, 'title': item.title });
-            })
-          })
-          subscriptions.forEach(function(subscription) {
-            feednami.load(subscription.url, function(result) {
-              if (result.error) {
-                console.log(result.error)
-              } else {
-                var entries = result.feed.entries;
-                entries.forEach(function(entry) {
-                  var entryDate = entry.date
-                  var itemDate = moment(entryDate).format("dddd, MMMM Do YYYY");
-                  var sortDate = moment(entryDate).format("X");
-                  feeds.push(entry);
-                  var description = '<div>' + entry.description + '</div>';
-                  var imageUrl = $(description).find('img').attr('src');
-                  if (imageUrl) {
-                    html =
-                      '<div class="grid-item entry-div ' + subscription.folder + '\" data-toggle="modal" data-target="#feed_content">' +
-                      '<img class="head-img" src="' + imageUrl + '">' +
-                      '<div class="thumbnail">' +
-                      '<div class="caption">' +
-                      '<h4 class="title" data-entryid="' + entry.link + '">' + entry.title + '</h4>' +
-                      '<p class="date" data-date=\"' + sortDate + '\">' + itemDate + '</p>' +
-                      '<p class="feed-name">' + subscription.title + '</p>' +
-                      '</div>' +
-                      '</div>' +
-                      '</div>';
-                  } else {
-                    html =
-                      '<div class="grid-item entry-div ' + subscription.folder + '\" data-toggle="modal" data-target="#feed_content">' +
-                      '<div class="thumbnail">' +
-                      '<div class="caption">' +
-                      '<h4 class="title" data-entryid="' + entry.link + '">' + entry.title + '</h4>' +
-                      '<p class="date" data-date="' + sortDate + '">' + itemDate + '</p>' +
-                      '<p class="feed-name">' + subscription.title + '</p>' +
-                      '</div>' +
-                      '</div>' +
-                      '</div>';
-                  }
-                  $('.grid').append(html);
-                })
-                var youtube = $('iframe[src*="youtube.com"]')
-                youtube.addClass('col-xs-12');
-                // updateIsotope();
-              }
-            })
-          })
-        }
-      })
 
-    },
     getSubscriptions: function(){
-      createIsotope();
       $.ajax({
         url: '/manage',
         method: 'GET',
@@ -197,7 +136,6 @@ $(document).ready(function() {
           $modal.find('.modal-title').text(entry.title);
           $modal.find('.modal-body').text(entry.published);
         }
-
         $modal.modal('show');
       }
     },
