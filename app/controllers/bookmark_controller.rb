@@ -1,26 +1,24 @@
 class BookmarkController < ApplicationController
+  before_action :find_bookmark, only: [:create]
   def index
     @bookmarks = current_user.bookmarks
     render json: @bookmarks
   end
 
   def create
-    # @bookmark = Bookmark.create(
-    #   user_id: current_user.id,
-    #   web_url: bookmark_params.id,
-    #   title: bookmark_params.title,
-    #   content: bookmark_params.content,
-    #   thumbnail_url: bookmark_params.imageUrl,
-    #   published: bookmark_params.published
-    # )
-    bookmark = Bookmark.create(bookmark_params)
-    bookmark.update_attributes(user_id: current_user.id)
-    # if bookmark.exist?(web_url: params[:bookmark][:web_url])
-      if bookmark.save
-        render json: bookmark
+    if @bookmark.nil?
+      @bookmark = current_user.bookmarks.create(bookmark_params)
+      if @bookmark.save
+        render json: @bookmark
       else
-        render json: @post.errors.messages, status: 400
+        render json: @bookmark.errors.messages, status: 400
       end
+    else
+      @bookmark.destroy
+
+      render json: {destroyed: true}
+    end
+    # if bookmark.exist?(web_url: params[:bookmark][:web_url])
     # else
     #   render json: {message: "This bookmark has been added already"}
     # end
@@ -35,6 +33,10 @@ class BookmarkController < ApplicationController
   end
 
 private
+  def find_bookmark
+    @bookmark = current_user.bookmarks.find_by(web_url: params[:bookmark][:web_url])
+  end
+
   def bookmark_params
     params.require(:bookmark).permit(:title, :web_url, :content, :published, :thumbnail_url)
   end

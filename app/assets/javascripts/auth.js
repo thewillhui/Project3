@@ -86,7 +86,6 @@ console.log("loaded")
       $('#signup-modal #signup-form').on('submit', cb);
     },
     bindFacebookClick: function () {
-      // TODO Rex edit this
       $('.fb-login-btn, .fb-signup-btn').on('click', function(e){
         e.preventDefault();
         $.auth.oAuthSignIn({

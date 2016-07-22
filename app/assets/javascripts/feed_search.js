@@ -18,8 +18,18 @@ console.log("loaded")
         data: params,
         success: function(data) {
           console.log('succeed');
-          // console.log(data);
+          $('#search-noty').noty({
+            text: 'Subscribed',
+            type: 'success',
+            timeout: 1000
+          })
         }
+      }).fail (function () {
+        $('#search-noty').noty({
+          text: 'This subscription is already existed',
+          type: 'warning',
+          timeout: 1000
+        })
       })
     },
 
