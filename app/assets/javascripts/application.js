@@ -22,6 +22,7 @@
 //= require isotope-packery/packery-mode.pkgd.min
 //= require imagesloaded/imagesloaded.pkgd.min
 //= require moment/min/moment.min
+//= require noty/js/noty/packaged/jquery.noty.packaged.min.js
 //= require_tree .
 
 $.auth.configure({
@@ -33,3 +34,4 @@ $.auth.configure({
 }).fail(function(resp){
   console.log("not loggedin");
 })
+$.noty.defaults.killer = true;

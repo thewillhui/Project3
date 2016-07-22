@@ -28,6 +28,11 @@ $(document).ready(function(){
         success: function(resp){
           console.log(resp);
           cb();
+          $('#bookmark-noty').noty({
+            text: 'Bookmark removed',
+            type: 'warning',
+            timeout: 2000
+          })
         }
       })
     },
@@ -37,8 +42,19 @@ $(document).ready(function(){
         method: 'POST',
         data: params,
         success: function(resp){
-          console.log('bookmarked!');
-          console.log(resp);
+          if (resp.destroyed) {
+            $('#feeds-noty').noty({
+              text: 'Bookmark removed',
+              type: 'warning',
+              timeout: 2000
+            })
+          } else {
+            $('#feeds-noty').noty({
+              text: 'Bookmark added',
+              type: 'success',
+              timeout: 2000
+            })
+          }
         }
       })
     },
@@ -53,9 +69,9 @@ $(document).ready(function(){
         var params = {
           bookmark: {
             title: entry.title,
-            link: entry.link,
+            web_url: entry.link,
             content: entry.description,
-            date: entry.date
+            published: entry.date
           }
         }
         console.log(params);

@@ -15,9 +15,7 @@
     <%= csrf_meta_tags %>
   </head>
     <body class="ajax <%= controller_name %> <%= action_name %>">
-
-  <%= render 'partials/navigation' %>
-
+      <%= render 'partials/navigation' %>
       <div class="container-fluid grid">
         <%= yield %>
       </div>

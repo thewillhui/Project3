@@ -223,6 +223,11 @@ $(document).ready(function() {
         success: function(resp) {
           console.log(resp);
           cb();
+          $('#manage-noty').noty({
+            text: 'Subscriptions Deleted',
+            type: 'success',
+            timeout: 1000
+          })
         }
       })
     },
@@ -232,9 +237,13 @@ $(document).ready(function() {
         method: 'PUT',
         data: { folder: newFolder },
         success: function(resp) {
-          console.log('edited');
           console.log(resp);
           cb();
+          $('#manage-noty').noty({
+            text: 'Folder changed',
+            type: 'alert',
+            timeout: 1000
+          })
         }
       })
     },
